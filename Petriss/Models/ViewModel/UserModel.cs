@@ -69,8 +69,8 @@ namespace Petriss.Models.ViewModel
         public string RoleName { get; set; }
         public bool? IsRoleActive { get; set; }
         [Required(ErrorMessage = "*")]
-        [Display(Name = "Login ID")]
-        public string LoginName { get; set; }
+        [Display(Name = "Login Name")]
+        public string PrefferedName { get; set; }
         [Required(ErrorMessage = "*")]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -80,7 +80,8 @@ namespace Petriss.Models.ViewModel
         [Required(ErrorMessage = "*")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        public string Gender { get; set; }
+        public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
     }
 
     public class UserLookupAvailableRole

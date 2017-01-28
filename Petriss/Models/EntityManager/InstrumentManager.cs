@@ -75,7 +75,7 @@ namespace Petriss.Models.EntityManager
                     {
 
                         User _user = db.Users.Find(user.UserId);
-                        _user.EmailId = user.LoginName;
+                        _user.EmailId = user.EmailAddress;
                         _user.Password = user.Password;
                         _user.CreatedByUserId = user.UserId;
                         _user.ModifiedByUserId = user.UserId;
@@ -91,7 +91,7 @@ namespace Petriss.Models.EntityManager
                             _userprofile.UserId = _user.UserId;
                             _userprofile.FirstName = user.FirstName;
                             _userprofile.LastName = user.LastName;
-                            _userprofile.Gender = user.Gender;
+                            _userprofile.PhoneNumber = user.PhoneNumber;
                             _userprofile.CreatedByUserId = user.UserId;
                             _userprofile.ModifiedByUserId = user.UserId;
                             _userprofile.CreatedDateTime = DateTime.Now;
@@ -150,7 +150,7 @@ namespace Petriss.Models.EntityManager
                 if (user != null)
                 {
                     _userprofile.UserId = user.UserId;
-                    _userprofile.LoginName = user.EmailId;
+                    _userprofile.EmailAddress = user.EmailId;
                     _userprofile.Password = user.Password;
 
                     var SUP = db.UsersProfiles.Find(userID);
@@ -158,7 +158,7 @@ namespace Petriss.Models.EntityManager
                     {
                         _userprofile.FirstName = SUP.FirstName;
                         _userprofile.LastName = SUP.LastName;
-                        _userprofile.Gender = SUP.Gender;
+                        _userprofile.PhoneNumber = SUP.PhoneNumber;
                     }
 
                     var SUR = db.UsersRoles.Find(userID);

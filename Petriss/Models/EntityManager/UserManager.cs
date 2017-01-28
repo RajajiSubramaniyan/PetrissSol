@@ -68,7 +68,7 @@ namespace Petriss.Models.EntityManager
                     {
 
                         User _user = db.Users.Find(user.UserId);
-                        _user.EmailId = user.LoginName;
+                        _user.EmailId = user.EmailAddress;
                         _user.Password = user.Password;
                         _user.CreatedByUserId = user.UserId;
                         _user.ModifiedByUserId = user.UserId;
@@ -84,7 +84,7 @@ namespace Petriss.Models.EntityManager
                             _userprofile.UserId = _user.UserId;
                             _userprofile.FirstName = user.FirstName;
                             _userprofile.LastName = user.LastName;
-                            _userprofile.Gender = user.Gender;
+                            _userprofile.PhoneNumber = user.PhoneNumber;
                             _userprofile.CreatedByUserId = user.UserId;
                             _userprofile.ModifiedByUserId = user.UserId;
                             _userprofile.CreatedDateTime = DateTime.Now;
@@ -231,7 +231,7 @@ namespace Petriss.Models.EntityManager
                 {
                     UPV = new UserProfileView();
                     UPV.UserId = u.UserId;
-                    UPV.LoginName = u.EmailId;
+                    UPV.EmailAddress = u.EmailId;
                     UPV.Password = u.Password;
 
                     var _userprofile = db.UsersProfiles.Find(u.UserId);
@@ -239,7 +239,7 @@ namespace Petriss.Models.EntityManager
                     {
                         UPV.FirstName = _userprofile.FirstName;
                         UPV.LastName = _userprofile.LastName;
-                        UPV.Gender = _userprofile.Gender;
+                        UPV.PhoneNumber = _userprofile.PhoneNumber;
                     }
 
                     var SUR = db.UsersRoles.Where(o => o.UserId.Equals(u.UserId));
@@ -293,7 +293,7 @@ namespace Petriss.Models.EntityManager
                 if (user != null)
                 {
                     UPV.UserId = user.UserId;
-                    UPV.LoginName = user.EmailId;
+                    UPV.EmailAddress = user.EmailId;
                     UPV.Password = user.Password;
 
                     var _userprofile = db.UsersProfiles.Find(userID);
@@ -301,7 +301,7 @@ namespace Petriss.Models.EntityManager
                     {
                         UPV.FirstName = _userprofile.FirstName;
                         UPV.LastName = _userprofile.LastName;
-                        UPV.Gender = _userprofile.Gender;
+                        UPV.PhoneNumber = _userprofile.PhoneNumber;
                     }
 
                     var SUR = db.UsersRoles.Find(userID);
