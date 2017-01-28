@@ -3,3 +3,8 @@ C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\bin\Debug\Petriss.Utilit
 C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\obj\Debug\Petriss.Utilities.csprojResolveAssemblyReference.cache
 C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\obj\Debug\Petriss.Utilities.dll
 C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\obj\Debug\Petriss.Utilities.pdb
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\bin\Debug\Petriss.Utilities.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\bin\Debug\Petriss.Utilities.pdb
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\obj\Debug\Petriss.Utilities.csprojResolveAssemblyReference.cache
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\obj\Debug\Petriss.Utilities.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\obj\Debug\Petriss.Utilities.pdb

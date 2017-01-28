@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace Petriss.Models.ViewModel
 {
@@ -33,7 +32,9 @@ namespace Petriss.Models.ViewModel
         //[RowModifiedDateTime] [datetime]
         //        NULL,
         [Key]
-        public int UserProfileID { get; set; }
+        public int UserId { get; set; }
+        public int UserLookupRoleId { get; set; }
+        public string RoleName { get; set; }
         [Display(Name = "Preferred Name")]
         public string PrefferedName { get; set; }
         [Display(Name = "First Name")]
@@ -50,7 +51,7 @@ namespace Petriss.Models.ViewModel
     public class UserLoginView
     {
         [Key]
-        public int UserProfileID { get; set; }
+        public int UserProfileId { get; set; }
         [Required(ErrorMessage = "*")]
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
@@ -63,8 +64,8 @@ namespace Petriss.Models.ViewModel
     public class UserProfileView
     {
         [Key]
-        public int SYSUserID { get; set; }
-        public int LOOKUPRoleID { get; set; }
+        public int UserId { get; set; }
+        public int UserLookupRoleId { get; set; }
         public string RoleName { get; set; }
         public bool? IsRoleActive { get; set; }
         [Required(ErrorMessage = "*")]
@@ -82,10 +83,10 @@ namespace Petriss.Models.ViewModel
         public string Gender { get; set; }
     }
 
-    public class LOOKUPAvailableRole
+    public class UserLookupAvailableRole
     {
         [Key]
-        public int LOOKUPRoleID { get; set; }
+        public int UserLookupRoleId { get; set; }
         public string RoleName { get; set; }
         public string RoleDescription { get; set; }
     }
@@ -97,8 +98,8 @@ namespace Petriss.Models.ViewModel
     }
     public class UserRoles
     {
-        public int? SelectedRoleID { get; set; }
-        public IEnumerable<LOOKUPAvailableRole> UserRoleList { get; set; }
+        public int? SelectedRoleId { get; set; }
+        public IEnumerable<UserLookupAvailableRole> UserRoleList { get; set; }
     }
 
     public class UserGender

@@ -13,10 +13,10 @@ namespace Petriss.Models.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class petdevEntities : DbContext
+    public partial class PetrissEntities : DbContext
     {
-        public petdevEntities()
-            : base("name=petdevEntities")
+        public PetrissEntities()
+            : base("name=PetrissEntities")
         {
         }
     
@@ -25,6 +25,19 @@ namespace Petriss.Models.DB
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<PETUser> PETUsers { get; set; }
+        public virtual DbSet<BrandMaster> BrandMasters { get; set; }
+        public virtual DbSet<CityMaster> CityMasters { get; set; }
+        public virtual DbSet<Instrument> Instruments { get; set; }
+        public virtual DbSet<ManufacturerMaster> ManufacturerMasters { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<SoakNote> SoakNotes { get; set; }
+        public virtual DbSet<SoakNoteMaster> SoakNoteMasters { get; set; }
+        public virtual DbSet<SpecialityMaster> SpecialityMasters { get; set; }
+        public virtual DbSet<StateMaster> StateMasters { get; set; }
+        public virtual DbSet<StatusMaster> StatusMasters { get; set; }
+        public virtual DbSet<UserLookupRole> UserLookupRoles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UsersProfile> UsersProfiles { get; set; }
+        public virtual DbSet<UsersRole> UsersRoles { get; set; }
     }
 }

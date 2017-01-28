@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetrissModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BrandMaster">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BrandStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Instrument">
+    <Key>
+      <PropertyRef Name="InstrumentId" />
+    </Key>
+    <Property Name="InstrumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstrumentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstrumentDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="BrandId" Type="Int32" Nullable="false" />
+    <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
+    <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+    <Property Name="InstrumentTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Finish" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Material" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ManufacturerMaster">
+    <Key>
+      <PropertyRef Name="ManufacturerId" />
+    </Key>
+    <Property Name="ManufacturerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ManufacturerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ManufacturerStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrganizationLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrganizationAddress1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrganizationAddress2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrganizationStateId" Type="Int32" />
+    <Property Name="OrganizationCityId" Type="Int32" />
+    <Property Name="OrganizationZip" Type="Int32" />
+    <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SoakNote">
+    <Key>
+      <PropertyRef Name="SoakId" />
+    </Key>
+    <Property Name="SoakId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TimeinSeconds" Type="Int32" Nullable="false" />
+    <Property Name="TimeinMinutes" Type="Int32" Nullable="false" />
+    <Property Name="TempreatureLow" Type="Int32" Nullable="false" />
+    <Property Name="TempreatureHigh" Type="Int32" Nullable="false" />
+    <Property Name="TempreatureType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="PhLevelLow" Type="Int32" Nullable="false" />
+    <Property Name="PhLevelHigh" Type="Int32" Nullable="false" />
+    <Property Name="SoakNoteId" Type="Int32" Nullable="false" />
+    <Property Name="FinalNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SoakNoteMaster">
+    <Key>
+      <PropertyRef Name="SoakNoteId" />
+    </Key>
+    <Property Name="SoakNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SoakNoteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SoakNoteStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SpecialityMaster">
+    <Key>
+      <PropertyRef Name="SpecialityId" />
+    </Key>
+    <Property Name="SpecialityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecialityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialityStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StateMaster">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StateStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StatusMaster">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserLookupRole">
+    <Key>
+      <PropertyRef Name="UserLookupRoleId" />
+    </Key>
+    <Property Name="UserLookupRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RoleDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UsersRoles" Relationship="Self.FK__UserRo__Looku__29572725" FromRole="UserLookupRoles" ToRole="UsersRoles" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserStatus" Type="Boolean" Nullable="false" />
+    <Property Name="UserActivationLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserLoginAttempt" Type="Int32" Nullable="false" />
+    <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UsersProfiles" Relationship="Self.FK__UserPr__Us__239E4DCF" FromRole="Users" ToRole="UsersProfiles" />
+    <NavigationProperty Name="UsersRoles" Relationship="Self.FK__UserRo__Us__2A4B4B5E" FromRole="Users" ToRole="UsersRoles" />
+  </EntityType>
+  <EntityType Name="UsersProfile">
+    <Key>
+      <PropertyRef Name="UserProfileId" />
+    </Key>
+    <Property Name="UserProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="PreferredName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="StatusId" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="OrganizationId" Type="Int32" />
+    <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK__UserPr__Us__239E4DCF" FromRole="UsersProfiles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UsersRole">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="UserLookupRoleId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserLookupRole" Relationship="Self.FK__UserRo__Looku__29572725" FromRole="UsersRoles" ToRole="UserLookupRoles" />
+    <NavigationProperty Name="User" Relationship="Self.FK__UserRo__Us__2A4B4B5E" FromRole="UsersRoles" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK__UserRo__Looku__29572725">
+    <End Role="UserLookupRoles" Type="Self.UserLookupRole" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLookupRoles">
+        <PropertyRef Name="UserLookupRoleId" />
+      </Principal>
+      <Dependent Role="UsersRoles">
+        <PropertyRef Name="UserLookupRoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserPr__Us__239E4DCF">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersProfiles" Type="Self.UsersProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersProfiles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRo__Us__2A4B4B5E">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PetrissEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BrandMasters" EntityType="Self.BrandMaster" />
+    <EntitySet Name="CityMasters" EntityType="Self.CityMaster" />
+    <EntitySet Name="Instruments" EntityType="Self.Instrument" />
+    <EntitySet Name="ManufacturerMasters" EntityType="Self.ManufacturerMaster" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="SoakNotes" EntityType="Self.SoakNote" />
+    <EntitySet Name="SoakNoteMasters" EntityType="Self.SoakNoteMaster" />
+    <EntitySet Name="SpecialityMasters" EntityType="Self.SpecialityMaster" />
+    <EntitySet Name="StateMasters" EntityType="Self.StateMaster" />
+    <EntitySet Name="StatusMasters" EntityType="Self.StatusMaster" />
+    <EntitySet Name="UserLookupRoles" EntityType="Self.UserLookupRole" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfile" />
+    <EntitySet Name="UsersRoles" EntityType="Self.UsersRole" />
+    <AssociationSet Name="FK__UserRo__Looku__29572725" Association="Self.FK__UserRo__Looku__29572725">
+      <End Role="UserLookupRoles" EntitySet="UserLookupRoles" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserPr__Us__239E4DCF" Association="Self.FK__UserPr__Us__239E4DCF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRo__Us__2A4B4B5E" Association="Self.FK__UserRo__Us__2A4B4B5E">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

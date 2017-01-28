@@ -8,116 +8,121 @@ namespace Petriss.Models.EntityManager
 {
     public class OrganizationManager
     {
-        public void AddUserAccount(UserSignUpView user)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        public void AddOrganization(UserSignUpView user)
         {
 
-            using (PetrissDbEntities db = new PetrissDbEntities())
+            using (PetrissEntities db = new PetrissEntities())
             {
 
-                PSYSUser SU = new PSYSUser();
-                SU.LoginName = user.LoginName;
-                SU.PasswordEncryptedText = user.Password;
-                SU.RowCreatedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1;
-                SU.RowModifiedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1; ;
-                SU.RowCreatedDateTime = DateTime.Now;
-                SU.RowMOdifiedDateTime = DateTime.Now;
-
-                db.PSYSUsers.Add(SU);
+                User _user = new User();
+                _user.EmailId = user.EmailAddress;
+                _user.Password = user.Password;
+                _user.CreatedByUserId = user.UserId > 0 ? user.UserId : 1;
+                _user.ModifiedByUserId = user.UserId > 0 ? user.UserId : 1; ;
+                _user.CreatedDateTime = DateTime.Now;
+                _user.ModifiedDateTime = DateTime.Now;
+                db.Users.Add(_user);
                 db.SaveChanges();
 
-                PSYSUserProfile SUP = new PSYSUserProfile();
-                SUP.SYSUserID = SU.SYSUserID;
-                SUP.FirstName = user.FirstName;
-                SUP.LastName = user.LastName;
-                SUP.Gender = user.Gender;
-                SUP.RowCreatedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1;
-                SUP.RowModifiedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1;
-                SUP.RowCreatedDateTime = DateTime.Now;
-                SUP.RowModifiedDateTime = DateTime.Now;
+                UsersProfile _userprofiles = new UsersProfile();
+                _userprofiles.UserId = _user.UserId;
+                _userprofiles.FirstName = user.FirstName;
+                _userprofiles.LastName = user.LastName;
+                _userprofiles.CreatedByUserId = user.UserId > 0 ? user.UserId : 1;
+                _userprofiles.ModifiedByUserId = user.UserId > 0 ? user.UserId : 1;
+                _userprofiles.CreatedDateTime = DateTime.Now;
+                _userprofiles.ModifiedDateTime = DateTime.Now;
 
-                db.PSYSUserProfiles.Add(SUP);
+                db.UsersProfiles.Add(_userprofiles);
                 db.SaveChanges();
 
 
-                if (user.LOOKUPRoleID > 0)
+                if (user.UserLookupRoleId > 0)
                 {
-                    PSYSUserRole SUR = new PSYSUserRole();
-                    SUR.LOOKUPRoleID = user.LOOKUPRoleID;
-                    SUR.SYSUserID = user.SYSUserID;
-                    SUR.IsActive = true;
-                    SUR.RowCreatedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1;
-                    SUR.RowModifiedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1;
-                    SUR.RowCreatedDateTime = DateTime.Now;
-                    SUR.RowModifiedDateTime = DateTime.Now;
+                    UsersRole _usersrole = new UsersRole();
+                    _usersrole.UserLookupRoleId = user.UserLookupRoleId;
+                    _usersrole.UserId = user.UserId;
+                    _usersrole.IsActive = true;
+                    _usersrole.CreatedByUserId = user.UserId > 0 ? user.UserId : 1;
+                    _usersrole.ModifiedByUserId = user.UserId > 0 ? user.UserId : 1;
+                    _usersrole.CreatedDateTime = DateTime.Now;
+                    _usersrole.ModifiedDateTime = DateTime.Now;
 
-                    db.PSYSUserRoles.Add(SUR);
+                    db.UsersRoles.Add(_usersrole);
                     db.SaveChanges();
                 }
             }
         }
-
-        public void UpdateUserAccount(UserProfileView user)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        public void UpdateOrganization(UserProfileView user)
         {
 
-            using (PetrissDbEntities db = new PetrissDbEntities())
+            using (PetrissEntities db = new PetrissEntities())
             {
                 using (var dbContextTransaction = db.Database.BeginTransaction())
                 {
                     try
                     {
 
-                        PSYSUser SU = db.PSYSUsers.Find(user.SYSUserID);
-                        SU.LoginName = user.LoginName;
-                        SU.PasswordEncryptedText = user.Password;
-                        SU.RowCreatedSYSUserID = user.SYSUserID;
-                        SU.RowModifiedSYSUserID = user.SYSUserID;
-                        SU.RowCreatedDateTime = DateTime.Now;
-                        SU.RowMOdifiedDateTime = DateTime.Now;
+                        User _user = db.Users.Find(user.UserId);
+                        _user.EmailId = user.LoginName;
+                        _user.Password = user.Password;
+                        _user.CreatedByUserId = user.UserId;
+                        _user.ModifiedByUserId = user.UserId;
+                        _user.CreatedDateTime = DateTime.Now;
+                        _user.ModifiedDateTime = DateTime.Now;
 
                         db.SaveChanges();
 
-                        var userProfile = db.PSYSUserProfiles.Where(o => o.SYSUserID == user.SYSUserID);
+                        var userProfile = db.UsersProfiles.Where(o => o.UserId == user.UserId);
                         if (userProfile.Any())
                         {
-                            PSYSUserProfile SUP = userProfile.FirstOrDefault();
-                            SUP.SYSUserID = SU.SYSUserID;
-                            SUP.FirstName = user.FirstName;
-                            SUP.LastName = user.LastName;
-                            SUP.Gender = user.Gender;
-                            SUP.RowCreatedSYSUserID = user.SYSUserID;
-                            SUP.RowModifiedSYSUserID = user.SYSUserID;
-                            SUP.RowCreatedDateTime = DateTime.Now;
-                            SUP.RowModifiedDateTime = DateTime.Now;
+                            UsersProfile _userprofile = userProfile.FirstOrDefault();
+                            _userprofile.UserId = _user.UserId;
+                            _userprofile.FirstName = user.FirstName;
+                            _userprofile.LastName = user.LastName;
+                            _userprofile.Gender = user.Gender;
+                            _userprofile.CreatedByUserId = user.UserId;
+                            _userprofile.ModifiedByUserId = user.UserId;
+                            _userprofile.CreatedDateTime = DateTime.Now;
+                            _userprofile.ModifiedDateTime = DateTime.Now;
 
                             db.SaveChanges();
                         }
 
-                        if (user.LOOKUPRoleID > 0)
+                        if (user.UserLookupRoleId > 0)
                         {
-                            var userRole = db.PSYSUserRoles.Where(o => o.SYSUserID == user.SYSUserID);
-                            PSYSUserRole SUR = null;
+                            var userRole = db.UsersRoles.Where(o => o.UserId == user.UserId);
+                            UsersRole SUR = null;
                             if (userRole.Any())
                             {
                                 SUR = userRole.FirstOrDefault();
-                                SUR.LOOKUPRoleID = user.LOOKUPRoleID;
-                                SUR.SYSUserID = user.SYSUserID;
+                                SUR.UserLookupRoleId = user.UserLookupRoleId;
+                                SUR.UserId = user.UserId;
                                 SUR.IsActive = true;
-                                SUR.RowCreatedSYSUserID = user.SYSUserID;
-                                SUR.RowModifiedSYSUserID = user.SYSUserID;
-                                SUR.RowCreatedDateTime = DateTime.Now;
-                                SUR.RowModifiedDateTime = DateTime.Now;
+                                SUR.CreatedByUserId = user.UserId;
+                                SUR.ModifiedByUserId = user.UserId;
+                                SUR.CreatedDateTime = DateTime.Now;
+                                SUR.ModifiedDateTime = DateTime.Now;
                             }
                             else
                             {
-                                SUR = new PSYSUserRole();
-                                SUR.LOOKUPRoleID = user.LOOKUPRoleID;
-                                SUR.SYSUserID = user.SYSUserID;
+                                SUR = new UsersRole();
+                                SUR.UserLookupRoleId = user.UserLookupRoleId;
+                                SUR.UserId = user.UserId;
                                 SUR.IsActive = true;
-                                SUR.RowCreatedSYSUserID = user.SYSUserID;
-                                SUR.RowModifiedSYSUserID = user.SYSUserID;
-                                SUR.RowCreatedDateTime = DateTime.Now;
-                                SUR.RowModifiedDateTime = DateTime.Now;
-                                db.PSYSUserRoles.Add(SUR);
+                                SUR.CreatedByUserId = user.UserId;
+                                SUR.ModifiedByUserId = user.UserId;
+                                SUR.CreatedDateTime = DateTime.Now;
+                                SUR.ModifiedDateTime = DateTime.Now;
+                                db.UsersRoles.Add(SUR);
                             }
 
                             db.SaveChanges();
@@ -131,67 +136,74 @@ namespace Petriss.Models.EntityManager
                 }
             }
         }
-      
 
-        public UserProfileView GetUserProfile(int userID)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        public UserProfileView GetOrganizationById(int userID)
         {
-            UserProfileView UPV = new UserProfileView();
-            using (PetrissDbEntities db = new PetrissDbEntities())
+            UserProfileView _userprofile = new UserProfileView();
+            using (PetrissEntities db = new PetrissEntities())
             {
-                var user = db.PSYSUsers.Find(userID);
+                var user = db.Users.Find(userID);
                 if (user != null)
                 {
-                    UPV.SYSUserID = user.SYSUserID;
-                    UPV.LoginName = user.LoginName;
-                    UPV.Password = user.PasswordEncryptedText;
+                    _userprofile.UserId = user.UserId;
+                    _userprofile.LoginName = user.EmailId;
+                    _userprofile.Password = user.Password;
 
-                    var SUP = db.PSYSUserProfiles.Find(userID);
+                    var SUP = db.UsersProfiles.Find(userID);
                     if (SUP != null)
                     {
-                        UPV.FirstName = SUP.FirstName;
-                        UPV.LastName = SUP.LastName;
-                        UPV.Gender = SUP.Gender;
+                        _userprofile.FirstName = SUP.FirstName;
+                        _userprofile.LastName = SUP.LastName;
+                        _userprofile.Gender = SUP.Gender;
                     }
 
-                    var SUR = db.PSYSUserRoles.Find(userID);
+                    var SUR = db.UsersRoles.Find(userID);
                     if (SUR != null)
                     {
-                        UPV.LOOKUPRoleID = SUR.LOOKUPRoleID;
-                        UPV.RoleName = SUR.PLOOKUPRole.RoleName;
-                        UPV.IsRoleActive = SUR.IsActive;
+                        _userprofile.UserLookupRoleId = SUR.UserLookupRoleId;
+                        _userprofile.RoleName = SUR.UserLookupRole.RoleName;
+                        _userprofile.IsRoleActive = SUR.IsActive;
                     }
                 }
             }
-            return UPV;
+            return _userprofile;
         }
-
-        public void DeleteUser(int userID)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userID"></param>
+        public void DeleteOrganization(int userID)
         {
-            using (PetrissDbEntities db = new PetrissDbEntities())
+            using (PetrissEntities db = new PetrissEntities())
             {
                 using (var dbContextTransaction = db.Database.BeginTransaction())
                 {
                     try
                     {
 
-                        var SUR = db.PSYSUserRoles.Where(o => o.SYSUserID == userID);
+                        var SUR = db.UsersRoles.Where(o => o.UserId == userID);
                         if (SUR.Any())
                         {
-                            db.PSYSUserRoles.Remove(SUR.FirstOrDefault());
+                            db.UsersRoles.Remove(SUR.FirstOrDefault());
                             db.SaveChanges();
                         }
 
-                        var SUP = db.PSYSUserProfiles.Where(o => o.SYSUserID == userID);
+                        var SUP = db.UsersProfiles.Where(o => o.UserId == userID);
                         if (SUP.Any())
                         {
-                            db.PSYSUserProfiles.Remove(SUP.FirstOrDefault());
+                            db.UsersProfiles.Remove(SUP.FirstOrDefault());
                             db.SaveChanges();
                         }
 
-                        var SU = db.PSYSUsers.Where(o => o.SYSUserID == userID);
-                        if (SU.Any())
+                        var _user = db.Users.Where(o => o.UserId == userID);
+                        if (_user.Any())
                         {
-                            db.PSYSUsers.Remove(SU.FirstOrDefault());
+                            db.Users.Remove(_user.FirstOrDefault());
                             db.SaveChanges();
                         }
 

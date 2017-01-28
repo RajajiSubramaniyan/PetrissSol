@@ -9,7 +9,7 @@ namespace Petriss.Controllers
 {
     public class OrganizationController : Controller
     {
-        petdevEntities _PetrissEntities =new petdevEntities();
+        PetrissEntities _PetrissEntities =new PetrissEntities();
 
         public ActionResult Index()
         {

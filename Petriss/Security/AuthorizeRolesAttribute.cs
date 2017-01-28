@@ -11,18 +11,21 @@ namespace Petriss.Security
         public AuthorizeRolesAttribute(params string[] roles) {
             this.userAssignedRoles = roles;
         }
-        //protected override bool AuthorizeCore(HttpContextBase httpContext) {
-        //    bool authorize = false;
-        //    using (petdevEntities db = new petdevEntities()) {
-        //        UserManager UM = new UserManager();
-        //        foreach (var roles in userAssignedRoles) {
-        //            authorize = UM.IsUserInRole(httpContext.User.Identity.Name, roles);
-        //            if (authorize)
-        //                return authorize;
-        //        }
-        //    }
-        //    return authorize;
-        //}
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            bool authorize = false;
+            using (PetrissEntities db = new PetrissEntities())
+            {
+                UserManager UM = new UserManager();
+                foreach (var roles in userAssignedRoles)
+                {
+                    authorize = UM.IsUserInRole(httpContext.User.Identity.Name, roles);
+                    if (authorize)
+                        return authorize;
+                }
+            }
+            return authorize;
+        }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext) {
             filterContext.Result = new RedirectResult("~/Home/UnAuthorized");
         }

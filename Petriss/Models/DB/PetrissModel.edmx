@@ -4,76 +4,682 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PetrissModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="PETUser">
+      <Schema Namespace="PetrissModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BrandMaster">
           <Key>
-            <PropertyRef Name="UserProfileID" />
+            <PropertyRef Name="BrandId" />
           </Key>
-          <Property Name="UserProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PrefferedName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BrandStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Instrument">
+          <Key>
+            <PropertyRef Name="InstrumentId" />
+          </Key>
+          <Property Name="InstrumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstrumentName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InstrumentDesc" Type="varchar(max)" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="ManufacturerId" Type="int" Nullable="false" />
+          <Property Name="SpecialityId" Type="int" Nullable="false" />
+          <Property Name="InstrumentTypeId" Type="int" Nullable="false" />
+          <Property Name="Finish" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Material" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Size" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Weight" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ManufacturerMaster">
+          <Key>
+            <PropertyRef Name="ManufacturerId" />
+          </Key>
+          <Property Name="ManufacturerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManufacturerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManufacturerStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="OrganizationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrganizationLink" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationAddress1" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="OrganizationAddress2" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="OrganizationStateId" Type="int" />
+          <Property Name="OrganizationCityId" Type="int" />
+          <Property Name="OrganizationZip" Type="int" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SoakNote">
+          <Key>
+            <PropertyRef Name="SoakId" />
+          </Key>
+          <Property Name="SoakId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeinSeconds" Type="int" Nullable="false" />
+          <Property Name="TimeinMinutes" Type="int" Nullable="false" />
+          <Property Name="TempreatureLow" Type="int" Nullable="false" />
+          <Property Name="TempreatureHigh" Type="int" Nullable="false" />
+          <Property Name="TempreatureType" Type="char" MaxLength="1" />
+          <Property Name="PhLevelLow" Type="int" Nullable="false" />
+          <Property Name="PhLevelHigh" Type="int" Nullable="false" />
+          <Property Name="SoakNoteId" Type="int" Nullable="false" />
+          <Property Name="FinalNote" Type="nvarchar(max)" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SoakNoteMaster">
+          <Key>
+            <PropertyRef Name="SoakNoteId" />
+          </Key>
+          <Property Name="SoakNoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoakNoteName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoakNoteStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SpecialityMaster">
+          <Key>
+            <PropertyRef Name="SpecialityId" />
+          </Key>
+          <Property Name="SpecialityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecialityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SpecialityStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatusMaster">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserLookupRoles">
+          <Key>
+            <PropertyRef Name="UserLookupRoleId" />
+          </Key>
+          <Property Name="UserLookupRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" />
+          <Property Name="RoleDescription" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserStatus" Type="bit" Nullable="false" />
+          <Property Name="UserActivationLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="UserLoginAttempt" Type="int" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UsersProfiles">
+          <Key>
+            <PropertyRef Name="UserProfileId" />
+          </Key>
+          <Property Name="UserProfileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PreferredName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PasswordEncryptedText" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="ActivationStatus" Type="bit" Nullable="false" />
-          <Property Name="ActivationLink" Type="nvarchar" MaxLength="200" />
-          <Property Name="LoginAttempt" Type="int" />
-          <Property Name="TempPassword" Type="nvarchar" MaxLength="255" />
-          <Property Name="TermsandConditionsStatus" Type="bit" Nullable="false" />
-          <Property Name="RowCreatedDateTime" Type="datetime2" Precision="7" />
-          <Property Name="RowModifiedDateTime" Type="datetime2" Precision="7" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="OrganizationId" Type="int" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="UsersRoles">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserLookupRoleId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__UserPr__Us__239E4DCF">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersProfiles" Type="Self.UsersProfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersProfiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRo__Looku__29572725">
+          <End Role="UserLookupRoles" Type="Self.UserLookupRoles" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLookupRoles">
+              <PropertyRef Name="UserLookupRoleId" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="UserLookupRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRo__Us__2A4B4B5E">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PetrissModelStoreContainer">
-          <EntitySet Name="PETUser" EntityType="Self.PETUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrandMaster" EntityType="Self.BrandMaster" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="Instrument" EntityType="Self.Instrument" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="ManufacturerMaster" EntityType="Self.ManufacturerMaster" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="SoakNote" EntityType="Self.SoakNote" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="SoakNoteMaster" EntityType="Self.SoakNoteMaster" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="SpecialityMaster" EntityType="Self.SpecialityMaster" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="StatusMaster" EntityType="Self.StatusMaster" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="UserLookupRoles" EntityType="Self.UserLookupRoles" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfiles" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="shabidy3" store:Type="Tables" />
+          <AssociationSet Name="FK__UserPr__Us__239E4DCF" Association="Self.FK__UserPr__Us__239E4DCF">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRo__Looku__29572725" Association="Self.FK__UserRo__Looku__29572725">
+            <End Role="UserLookupRoles" EntitySet="UserLookupRoles" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRo__Us__2A4B4B5E" Association="Self.FK__UserRo__Us__2A4B4B5E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PetrissModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="PETUser">
+        <EntityType Name="BrandMaster">
           <Key>
-            <PropertyRef Name="UserProfileID" />
+            <PropertyRef Name="BrandId" />
           </Key>
-          <Property Name="UserProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PrefferedName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BrandStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Instrument">
+          <Key>
+            <PropertyRef Name="InstrumentId" />
+          </Key>
+          <Property Name="InstrumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstrumentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InstrumentDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
+          <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+          <Property Name="InstrumentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Finish" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Material" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ManufacturerMaster">
+          <Key>
+            <PropertyRef Name="ManufacturerId" />
+          </Key>
+          <Property Name="ManufacturerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManufacturerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManufacturerStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationAddress1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationAddress2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationStateId" Type="Int32" />
+          <Property Name="OrganizationCityId" Type="Int32" />
+          <Property Name="OrganizationZip" Type="Int32" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SoakNote">
+          <Key>
+            <PropertyRef Name="SoakId" />
+          </Key>
+          <Property Name="SoakId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeinSeconds" Type="Int32" Nullable="false" />
+          <Property Name="TimeinMinutes" Type="Int32" Nullable="false" />
+          <Property Name="TempreatureLow" Type="Int32" Nullable="false" />
+          <Property Name="TempreatureHigh" Type="Int32" Nullable="false" />
+          <Property Name="TempreatureType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PhLevelLow" Type="Int32" Nullable="false" />
+          <Property Name="PhLevelHigh" Type="Int32" Nullable="false" />
+          <Property Name="SoakNoteId" Type="Int32" Nullable="false" />
+          <Property Name="FinalNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SoakNoteMaster">
+          <Key>
+            <PropertyRef Name="SoakNoteId" />
+          </Key>
+          <Property Name="SoakNoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoakNoteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoakNoteStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SpecialityMaster">
+          <Key>
+            <PropertyRef Name="SpecialityId" />
+          </Key>
+          <Property Name="SpecialityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SpecialityStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StatusMaster">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserLookupRole">
+          <Key>
+            <PropertyRef Name="UserLookupRoleId" />
+          </Key>
+          <Property Name="UserLookupRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RoleDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UsersRoles" Relationship="Self.FK__UserRo__Looku__29572725" FromRole="UserLookupRoles" ToRole="UsersRoles" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserStatus" Type="Boolean" Nullable="false" />
+          <Property Name="UserActivationLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserLoginAttempt" Type="Int32" Nullable="false" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UsersProfiles" Relationship="Self.FK__UserPr__Us__239E4DCF" FromRole="Users" ToRole="UsersProfiles" />
+          <NavigationProperty Name="UsersRoles" Relationship="Self.FK__UserRo__Us__2A4B4B5E" FromRole="Users" ToRole="UsersRoles" />
+        </EntityType>
+        <EntityType Name="UsersProfile">
+          <Key>
+            <PropertyRef Name="UserProfileId" />
+          </Key>
+          <Property Name="UserProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PreferredName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PasswordEncryptedText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ActivationStatus" Type="Boolean" Nullable="false" />
-          <Property Name="ActivationLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="LoginAttempt" Type="Int32" />
-          <Property Name="TempPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="TermsandConditionsStatus" Type="Boolean" Nullable="false" />
-          <Property Name="RowCreatedDateTime" Type="DateTime" Precision="7" />
-          <Property Name="RowModifiedDateTime" Type="DateTime" Precision="7" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="OrganizationId" Type="Int32" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserPr__Us__239E4DCF" FromRole="UsersProfiles" ToRole="Users" />
         </EntityType>
-        <EntityContainer Name="petdevEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="PETUsers" EntityType="Self.PETUser" />
+        <EntityType Name="UsersRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserLookupRoleId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserLookupRole" Relationship="Self.FK__UserRo__Looku__29572725" FromRole="UsersRoles" ToRole="UserLookupRoles" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserRo__Us__2A4B4B5E" FromRole="UsersRoles" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__UserRo__Looku__29572725">
+          <End Role="UserLookupRoles" Type="Self.UserLookupRole" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLookupRoles">
+              <PropertyRef Name="UserLookupRoleId" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="UserLookupRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPr__Us__239E4DCF">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersProfiles" Type="Self.UsersProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersProfiles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRo__Us__2A4B4B5E">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PetrissEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BrandMasters" EntityType="Self.BrandMaster" />
+          <EntitySet Name="CityMasters" EntityType="Self.CityMaster" />
+          <EntitySet Name="Instruments" EntityType="Self.Instrument" />
+          <EntitySet Name="ManufacturerMasters" EntityType="Self.ManufacturerMaster" />
+          <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="SoakNotes" EntityType="Self.SoakNote" />
+          <EntitySet Name="SoakNoteMasters" EntityType="Self.SoakNoteMaster" />
+          <EntitySet Name="SpecialityMasters" EntityType="Self.SpecialityMaster" />
+          <EntitySet Name="StateMasters" EntityType="Self.StateMaster" />
+          <EntitySet Name="StatusMasters" EntityType="Self.StatusMaster" />
+          <EntitySet Name="UserLookupRoles" EntityType="Self.UserLookupRole" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfile" />
+          <EntitySet Name="UsersRoles" EntityType="Self.UsersRole" />
+          <AssociationSet Name="FK__UserRo__Looku__29572725" Association="Self.FK__UserRo__Looku__29572725">
+            <End Role="UserLookupRoles" EntitySet="UserLookupRoles" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPr__Us__239E4DCF" Association="Self.FK__UserPr__Us__239E4DCF">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersProfiles" EntitySet="UsersProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRo__Us__2A4B4B5E" Association="Self.FK__UserRo__Us__2A4B4B5E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PetrissModelStoreContainer" CdmEntityContainer="petdevEntities">
-          <EntitySetMapping Name="PETUsers">
-            <EntityTypeMapping TypeName="PetrissModel.PETUser">
-              <MappingFragment StoreEntitySet="PETUser">
-                <ScalarProperty Name="UserProfileID" ColumnName="UserProfileID" />
-                <ScalarProperty Name="PrefferedName" ColumnName="PrefferedName" />
+        <EntityContainerMapping StorageEntityContainer="PetrissModelStoreContainer" CdmEntityContainer="PetrissEntities">
+          <EntitySetMapping Name="BrandMasters">
+            <EntityTypeMapping TypeName="PetrissModel.BrandMaster">
+              <MappingFragment StoreEntitySet="BrandMaster">
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="BrandStatus" ColumnName="BrandStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityMasters">
+            <EntityTypeMapping TypeName="PetrissModel.CityMaster">
+              <MappingFragment StoreEntitySet="CityMaster">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityStatus" ColumnName="CityStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instruments">
+            <EntityTypeMapping TypeName="PetrissModel.Instrument">
+              <MappingFragment StoreEntitySet="Instrument">
+                <ScalarProperty Name="InstrumentId" ColumnName="InstrumentId" />
+                <ScalarProperty Name="InstrumentName" ColumnName="InstrumentName" />
+                <ScalarProperty Name="InstrumentDesc" ColumnName="InstrumentDesc" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+                <ScalarProperty Name="InstrumentTypeId" ColumnName="InstrumentTypeId" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManufacturerMasters">
+            <EntityTypeMapping TypeName="PetrissModel.ManufacturerMaster">
+              <MappingFragment StoreEntitySet="ManufacturerMaster">
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+                <ScalarProperty Name="ManufacturerStatus" ColumnName="ManufacturerStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="PetrissModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationLink" ColumnName="OrganizationLink" />
+                <ScalarProperty Name="OrganizationAddress1" ColumnName="OrganizationAddress1" />
+                <ScalarProperty Name="OrganizationAddress2" ColumnName="OrganizationAddress2" />
+                <ScalarProperty Name="OrganizationStateId" ColumnName="OrganizationStateId" />
+                <ScalarProperty Name="OrganizationCityId" ColumnName="OrganizationCityId" />
+                <ScalarProperty Name="OrganizationZip" ColumnName="OrganizationZip" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoakNotes">
+            <EntityTypeMapping TypeName="PetrissModel.SoakNote">
+              <MappingFragment StoreEntitySet="SoakNote">
+                <ScalarProperty Name="SoakId" ColumnName="SoakId" />
+                <ScalarProperty Name="TimeinSeconds" ColumnName="TimeinSeconds" />
+                <ScalarProperty Name="TimeinMinutes" ColumnName="TimeinMinutes" />
+                <ScalarProperty Name="TempreatureLow" ColumnName="TempreatureLow" />
+                <ScalarProperty Name="TempreatureHigh" ColumnName="TempreatureHigh" />
+                <ScalarProperty Name="TempreatureType" ColumnName="TempreatureType" />
+                <ScalarProperty Name="PhLevelLow" ColumnName="PhLevelLow" />
+                <ScalarProperty Name="PhLevelHigh" ColumnName="PhLevelHigh" />
+                <ScalarProperty Name="SoakNoteId" ColumnName="SoakNoteId" />
+                <ScalarProperty Name="FinalNote" ColumnName="FinalNote" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoakNoteMasters">
+            <EntityTypeMapping TypeName="PetrissModel.SoakNoteMaster">
+              <MappingFragment StoreEntitySet="SoakNoteMaster">
+                <ScalarProperty Name="SoakNoteId" ColumnName="SoakNoteId" />
+                <ScalarProperty Name="SoakNoteName" ColumnName="SoakNoteName" />
+                <ScalarProperty Name="SoakNoteStatus" ColumnName="SoakNoteStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialityMasters">
+            <EntityTypeMapping TypeName="PetrissModel.SpecialityMaster">
+              <MappingFragment StoreEntitySet="SpecialityMaster">
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+                <ScalarProperty Name="SpecialityName" ColumnName="SpecialityName" />
+                <ScalarProperty Name="SpecialityStatus" ColumnName="SpecialityStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateMasters">
+            <EntityTypeMapping TypeName="PetrissModel.StateMaster">
+              <MappingFragment StoreEntitySet="StateMaster">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateStatus" ColumnName="StateStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusMasters">
+            <EntityTypeMapping TypeName="PetrissModel.StatusMaster">
+              <MappingFragment StoreEntitySet="StatusMaster">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLookupRoles">
+            <EntityTypeMapping TypeName="PetrissModel.UserLookupRole">
+              <MappingFragment StoreEntitySet="UserLookupRoles">
+                <ScalarProperty Name="UserLookupRoleId" ColumnName="UserLookupRoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PetrissModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="UserActivationLink" ColumnName="UserActivationLink" />
+                <ScalarProperty Name="UserLoginAttempt" ColumnName="UserLoginAttempt" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersProfiles">
+            <EntityTypeMapping TypeName="PetrissModel.UsersProfile">
+              <MappingFragment StoreEntitySet="UsersProfiles">
+                <ScalarProperty Name="UserProfileId" ColumnName="UserProfileId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="PasswordEncryptedText" ColumnName="PasswordEncryptedText" />
-                <ScalarProperty Name="ActivationStatus" ColumnName="ActivationStatus" />
-                <ScalarProperty Name="ActivationLink" ColumnName="ActivationLink" />
-                <ScalarProperty Name="LoginAttempt" ColumnName="LoginAttempt" />
-                <ScalarProperty Name="TempPassword" ColumnName="TempPassword" />
-                <ScalarProperty Name="TermsandConditionsStatus" ColumnName="TermsandConditionsStatus" />
-                <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
-                <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersRoles">
+            <EntityTypeMapping TypeName="PetrissModel.UsersRole">
+              <MappingFragment StoreEntitySet="UsersRoles">
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserLookupRoleId" ColumnName="UserLookupRoleId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
