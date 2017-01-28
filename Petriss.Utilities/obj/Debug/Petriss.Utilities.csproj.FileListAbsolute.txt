@@ -1,0 +1,5 @@
+C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\bin\Debug\Petriss.Utilities.dll
+C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\bin\Debug\Petriss.Utilities.pdb
+C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\obj\Debug\Petriss.Utilities.csprojResolveAssemblyReference.cache
+C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\obj\Debug\Petriss.Utilities.dll
+C:\primedevsourcecode\Petriss\Petriss\Petriss.Utilities\obj\Debug\Petriss.Utilities.pdb

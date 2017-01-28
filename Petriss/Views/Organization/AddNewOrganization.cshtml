@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewBag.Title = "AddNewOrganization";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-group-vertical btn-block btn-primary" href="">
+                    <i class="glyphicon-plus"></i>&nbsp;Create Organization
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="row centered-form">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Add New Organization!</h2>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="organizationname " id="organizationname " class="form-control input-sm" placeholder="Enter Organization Name">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="hospitalname " id="hospitalname " class="form-control input-sm" placeholder="Enter Hospital Name">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="hospitalwebsite " id="hospitalwebsite " class="form-control input-sm" placeholder="Enter Hospital Site Address">
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="siteaddress1" id="siteaddress1" class="form-control input-sm" placeholder="Site Address1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="siteaddress2" id="siteaddress2" class="form-control input-sm" placeholder="Site Address2">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="hospital_website " id="hospital_website " class="form-control input-sm" placeholder="Enter Hospital Site Address">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="city" id="city" class="form-control input-sm" placeholder="Enter City">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="state" id="state" class="form-control input-sm" placeholder="Enter State">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="zip" id="zip" class="form-control input-sm" placeholder="Enter Zip Code">
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="panel-title"><h3>Primary Organization  Administrator</h3></div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Date Created" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Last Name" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Edited" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Email Address" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Confirmed" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Phone" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Status" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Default Site" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-title"><h3>Secondary Organization  Administrator</h3></div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Date Created" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Last Name" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Edited" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Email Address" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Confirmed" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Phone" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Status" tabindex="2">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Default Site" tabindex="1">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="colorgraph">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-9"></div>
+                                <div class="col-xs-12 col-md-3"><a href="#" class="btn btn-success btn-block btn-sm">Save</a></div>
+                            </div>
+
+
+
+                            <!-- Modal -->
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+

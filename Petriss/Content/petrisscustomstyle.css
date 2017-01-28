@@ -1,0 +1,183 @@
+﻿body {
+    background-color: #fff!important;
+    color: #A4A4A4;
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow-y: auto;
+    width:100%!important;
+    overflow-x:hidden!important;
+    min-height:500px!important;
+    height:500px!important;
+   
+   
+}
+.form-control {
+  
+    height: 30px!important;
+    padding:2px 4px;
+   
+}
+    .form-group {
+    margin-bottom: 5px;
+}
+   
+    h3{
+        margin: 0.4em 0 0.2em 0;
+	color: #333;
+  	font-family: 'Orienta', sans-serif;
+	font-size: 1em;
+	line-height: 30px!important;
+    font-weight:700;
+    border-bottom:1px solid #ccc;
+   border: 1px solid #DFE0E2;
+    background: #F5F5F5 linear-gradient(#FFF, #F5F5F5) repeat scroll 0% 0%;
+    color: #666;
+    padding:2px;
+    }
+.modal-content
+{
+     border: 1px solid #ccc!important;
+    background: #FFF;
+    box-shadow: 2px 2px 5px #999!important;
+}
+ .panel-default
+    {
+       clear: both;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    padding: 0px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    border: 1px solid #ddd;
+    border-radius: 0!important; 
+  
+    }
+ .page-title {
+    padding: 0px!important;
+    font-size: 26px!important;
+    letter-spacing: -1px!important;
+    display: block!important;
+    color: #666!important;
+    margin: 0px 0px 15px 0px!important;
+    font-weight: 300!important;
+    font-family: 'Open Sans', sans-serif!important;
+    border-radius:0!important;
+}
+ .page-bar .page-breadcrumb {
+    display: inline-block;
+    float: left;
+    padding: 8px;
+    margin: 0;
+    list-style: none;
+}
+ .page-bar .page-toolbar {
+    display: inline-block;
+    float: right;
+    padding: 0;
+}
+ .page-bar {
+    border: 0;
+    padding: 0px;
+    background-color: #eee;
+    margin-bottom: 25px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.panel
+{
+   
+    clear: both;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    padding: 0px;
+    -webkit-box-shadow1: 0 1px 4px rgba(0, 0, 0, 0.07);
+    box-shadow1: 0 1px 4px rgba(0, 0, 0, 0.07);
+    border: 1px solid #ddd;
+   
+}
+.panel-info>.panel-heading{
+    color:#A4A4A4!important;
+    background-color:#F5F5F5!important;
+    border-color: #ccc!important;
+    background-image:none!important;
+}
+.break
+{
+    z-index: 671;
+    height:1px;
+  
+    margin-bottom:10px!important;
+    margin-top:5px!important;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 5px!important;
+    vertical-align:middle!important;
+    
+}
+.table>tbody>tr>th
+{
+    color:#A4A4A4!important;
+    background-color:red!important;
+    border-color: #ccc!important;
+ }
+.navbar-inverse {
+       background-color: #2e353d!important;
+}
+.topnav {
+    top: 0px!important;
+    height: 35px!important;
+    background-color: #2e353d!important;
+    position: absolute!important;
+    width: 100%!important;
+    margin-left:1.5%!important;
+    position:fixed;
+    color:#fff!important;
+}
+.topnav a{
+    color:#fff!important;
+    text-decoration:none;
+}
+   .navbar-header h5{
+       width:100%!important;text-align:center!important;
+       margin-left:55%;
+       color:#fbf6f6;
+       letter-spacing:1px;
+       font-size:1.2em;
+       font-weight:400;
+       text-shadow:1px -1px 1px  #ccc;
+      
+           
+   }  
+        .pagebody
+        {
+           margin-top:60px!important;min-height:540px;
+        }
+     .nav-side-menu .brand {
+     background-color:transparent!important;
+    
+}
+     .nav-side-menu .brand {
+        margin-left:-8px!important;
+     }
+        .body-content{
+            margin-top:55px!important; height:auto;min-height:500px;
+            padding-top:10px;
+            margin-left:2%!important;margin-right:1%!important;
+            background-color: #FaFaFa;
+        }
+           footer{
+            background-color: #2e353d!important;
+            min-height:42px!important;
+            border-top:1px solid #ccc!important;
+            padding:0!important;
+        }
+             footer p{
+           width:100%;
+           text-align:center;
+           letter-spacing:1px;
+        }
+
+
+
+ 
