@@ -79,3 +79,4 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Ow
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.pdb
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.csprojResolveAssemblyReference.cache

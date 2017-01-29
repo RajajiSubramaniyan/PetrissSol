@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-      
+
         <div class="container">
             <div class="navbar-header">
 
@@ -39,20 +39,19 @@
                 <div class="brand"><img src="~/Images/PetrissLogo.png" style="border: none" /></div>
                 <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
-             
+
             </div>
         </nav>
 
     </aside>
     <div class="col-lg-12 body-content">
         @RenderBody()
-     
+
     </div>
     <div class="clearfix"></div>
     <footer>
         <p>&copy; @DateTime.Now.Year -Petriss,Inc all rights reserved</p>
     </footer>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
