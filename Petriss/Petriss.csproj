@@ -197,7 +197,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\InstrumentControlle.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -269,6 +272,8 @@
     <Compile Include="Models\EntityManager\InstrumentManager.cs" />
     <Compile Include="Models\EntityManager\OrganizationManager.cs" />
     <Compile Include="Models\EntityManager\UserManager.cs" />
+    <Compile Include="Models\ViewModel\InstrumentModel.cs" />
+    <Compile Include="Models\ViewModel\OrganizationModel.cs" />
     <Compile Include="Models\ViewModel\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthorizeRolesAttribute.cs" />

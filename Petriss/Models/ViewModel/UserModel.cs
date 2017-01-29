@@ -5,32 +5,6 @@ namespace Petriss.Models.ViewModel
     public class UserSignUpView
     {
 
-        //        [UserProfileID]
-        //        [int] IDENTITY(1,1) NOT NULL,
-
-        //[UserID] [int] NOT NULL,
-
-        //[PrefferedName] [varchar](50) NOT NULL,
-
-        //[FirstName] [varchar](50) NOT NULL,
-
-        //[LastName] [varchar](50) NOT NULL,
-
-        //[EmailAddress] [varchar](50) NOT NULL,
-
-        //[Gender] [char](1) NOT NULL,
-
-        //[Status]  bit NOT NULL,
-        //	[RowCreatedUserID]
-        //        [int] NOT NULL,
-
-        //[RowCreatedDateTime] [datetime]
-        //        NULL,
-        //	[RowModifiedUserID]
-        //        [int] NOT NULL,
-
-        //[RowModifiedDateTime] [datetime]
-        //        NULL,
         [Key]
         public int UserId { get; set; }
         public int UserLookupRoleId { get; set; }

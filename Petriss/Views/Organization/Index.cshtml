@@ -3,7 +3,30 @@
     ViewBag.Title = "Organization";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+ <script type="text/javascript">
 
+    $(document).ready(function () {
+        $("#organization_name").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Organization/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>  
 <div class="container">
     <!-- END BEGIN STYLE CUSTOMIZER -->
     <!-- BEGIN PAGE HEADER-->
@@ -308,6 +331,7 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
             </div>
         </div>
+  
         <!-- /.modal-content -->
     </div>
 </div>
