@@ -96,3 +96,5 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\obj\Debug\
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\obj\Debug\Petriss.Tests.pdb
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\log4net.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\log4net.xml
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\Petriss.Utilities.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\Petriss.Utilities.pdb

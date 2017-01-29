@@ -366,8 +366,14 @@
     <Content Include="Views\Account\LogOff.cshtml" />
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\_IconLayout.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Petriss.Utilities\Petriss.Utilities.csproj">
+      <Project>{3acae97a-60a8-4a63-ac9e-64061a915d23}</Project>
+      <Name>Petriss.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

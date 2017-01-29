@@ -15,6 +15,7 @@ using Petriss.Models.EntityManager;
 using System.Net.Mail;
 using System.Net;
 using System.Configuration;
+using Petriss.Utilities;
 
 namespace Petriss.Controllers
 {
@@ -29,60 +30,37 @@ namespace Petriss.Controllers
             }
 
             [HttpPost]
-            public ActionResult SignUp(UserSignUpView USV)
-            {
+             public ActionResult SignUp(UserSignUpView USV)
+             {
+           // bool _emailconfirmed = false;
+            //EMAIL SERVER SETTING
+            string _host = ConfigurationManager.AppSettings["host"].ToString();
+            string _port = ConfigurationManager.AppSettings["port"].ToString();
+            string _smptclient = ConfigurationManager.AppSettings["smtpclient"].ToString();
+            string _username = ConfigurationManager.AppSettings["username"].ToString();
+            string _password = ConfigurationManager.AppSettings["password"].ToString();
+            string _emailfrom = ConfigurationManager.AppSettings["emailfrom"].ToString();
 
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
                 {
                     UserManager UM = new UserManager();
                     if (!UM.IsLoginNameExist(USV.EmailAddress))
                     {
-                        UM.AddUserAccount(USV);
-                        
+                        UM.AddUserAccount(USV);                        
                         FormsAuthentication.SetAuthCookie(USV.FirstName, false);
-                         //EMAIL SERVER SETTING
-                        string _host=ConfigurationManager.AppSettings["host"].ToString();
-                        string _port = ConfigurationManager.AppSettings["port"].ToString();
-                        string _smptclient = ConfigurationManager.AppSettings["smtpclient"].ToString();
-                        string _username = ConfigurationManager.AppSettings["username"].ToString();
-                        string _password= ConfigurationManager.AppSettings["password"].ToString();
-                        string _emailfrom = ConfigurationManager.AppSettings["emailfrom"].ToString();
-
-                    //if (_host == null || string.IsNullOrEmpty(_host.ToString()))
-                    //    throw new Exception("Fatal error: missing connecting string in web.config file");
-                    //string connString = _host.ToString();
-                    try
-                    {
-                        SmtpClient smtpClient = new SmtpClient("smtpout.secureserver.net");
-                        smtpClient.Host = _host;
-                        smtpClient.Port = Convert.ToInt32(_port);
-                        smtpClient.EnableSsl = false;//--- Donot change
-                        smtpClient.UseDefaultCredentials = true;
-                        string faithSenderUsername = _username;
-                        string faithSenderPassword = _password;
-                        string _messagebody = "Welcome " + _emailfrom + ":" + "<br/><br/>Please click here <a href='http://petrisss.com/Login.aspx' target='_new'>Here</a> to activate your account . <br/><br/><b>Best Regards</b></br><i> Petriss Systems</i>"; //Message body
-
-                        smtpClient.Credentials = new NetworkCredential(faithSenderUsername, faithSenderPassword);
-                        using (MailMessage mm = new MailMessage(faithSenderUsername, _emailfrom))
-                        {
-                            mm.Subject = "Petriss Account Activation";
-                            mm.Body = _messagebody;
-
-                            mm.IsBodyHtml = true;
-                            smtpClient.Send(mm);
-                            // loginmsg.Text = "check you email";
-                        }
-                    }
-                    catch(Exception ex)
-                    {
-                        logger.Error(ex.ToString());
-                    }
-                        
-                    return RedirectToAction("Welcome", "Home");
-
-                    }
+                        GMailer.GmailUsername = "shabirahmadhakim@gmail.com";
+                        GMailer.GmailPassword = "Shabir14";
+                        GMailer mailer = new GMailer();
+                        mailer.IsHtml = true;
+                        mailer.ToEmail = "shabir_hakim1@hotmail.com";// USV.EmailAddress;
+                        mailer.Subject = "Verify your email id";
+                        mailer.Body = "<b>Dear  " + mailer.ToEmail + "</b><br/>Welcome to Petriss Systems... Thanks for Registering your account.Please verify your email address by clicking the link <br/> <a href=? verifyemailcode = " + UM.GetUserActivationLink(USV.EmailAddress) + ">Here</a></br/> <BR/> <B>Best Regards<br/> Petriss Systems";
+                        mailer.Send();
+                        return RedirectToAction("ConfirmEmail", "Account", new { Email = USV.EmailAddress });
+                      }
                     else
-                        ModelState.AddModelError("", "Login Name already taken.");
+                     { ModelState.AddModelError("", "Login Name already taken."); }
+                       
                 }
                 return View();
             }
@@ -94,8 +72,13 @@ namespace Petriss.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-
-            public ActionResult LogIn()
+        [AllowAnonymous]
+        public ActionResult ConfirmEmail(string Email)
+        {
+            ViewBag.Email = Email;
+            return View();
+        }
+        public ActionResult LogIn()
             {
                 return View();
             }
@@ -103,14 +86,17 @@ namespace Petriss.Controllers
             [HttpPost]
             public ActionResult LogIn(UserLoginView ULV, string returnUrl)
             {
-            string _url = string.Empty;
-          
+            UserManager UM = new UserManager();
+            
+            string activationlink =UM.GetUserActivationLink(ULV.EmailAddress);
+
+
                 if (ModelState.IsValid)
                 {
 
-                //if (ULV.EmailAddress== Request.Url.GetLeftPart(UriPartial.Path))
-                //{
-                    UserManager UM = new UserManager();
+                if (Request.Url.AbsoluteUri == activationlink)
+                {
+                  
                     string password = UM.GetUserPassword(ULV.EmailAddress);
 
                     if (string.IsNullOrEmpty(password))
@@ -119,8 +105,7 @@ namespace Petriss.Controllers
                     {
                         if (ULV.Password.Equals(password))
                         {
-                            //FormsAuthentication.SetAuthCookie(ULV.LoginName, false);
-                            //return RedirectToAction("Welcome", "Home");
+                            
                              FormsAuthentication.RedirectFromLoginPage(ULV.EmailAddress, false);
                         }
                         else
@@ -128,11 +113,11 @@ namespace Petriss.Controllers
                             ModelState.AddModelError("", "The password provided is incorrect.");
                         }
                     }
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError(" ","Please Check your email and activate/login via Url");
-                //}
+                }
+                else
+                {
+                   ModelState.AddModelError(" ","Please Check your email and activate/login via Url");
+                }
                 }
 
                 // If we got this far, something failed, redisplay form
@@ -156,8 +141,8 @@ namespace Petriss.Controllers
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "Faith@shabirhakim.net",  // replace with valid value
-                        Password = "Shabir@123"  // replace with valid value
+                        UserName = "shabirhakim.net",  // replace with valid value
+                        Password = "Shabir@"  // replace with valid value
                     };
                     smtp.Credentials = credential;
                     smtp.Host = "webmail.shabirhakim.net";

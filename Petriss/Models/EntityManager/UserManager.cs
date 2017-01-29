@@ -3,22 +3,24 @@ using System.Linq;
 using Petriss.Models.DB;
 using System.Collections.Generic;
 using Petriss.Models.ViewModel;
+using System.Web;
 
 namespace Petriss.Models.EntityManager
 {
     public class UserManager
     {
+       
      
-
         public void AddUserAccount(UserSignUpView user)
         {
-
+            string baseUrl = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
             using (PetrissEntities db = new PetrissEntities())
             {
 
                 User _user = new User();
                 _user.EmailId = user.EmailAddress;
                 _user.Password = user.Password;
+                _user.UserActivationLink = baseUrl + Guid.NewGuid();
                 _user.CreatedByUserId = user.UserId > 0 ? user.UserId : 1;
                 _user.ModifiedByUserId = user.UserId > 0 ? user.UserId : 1; ;
                 _user.CreatedDateTime = DateTime.Now;
@@ -35,7 +37,6 @@ namespace Petriss.Models.EntityManager
                 _userprofiles.ModifiedByUserId = user.UserId > 0 ? user.UserId : 1;
                 _userprofiles.CreatedDateTime = DateTime.Now;
                 _userprofiles.ModifiedDateTime = DateTime.Now;
-
                 db.UsersProfiles.Add(_userprofiles);
                 db.SaveChanges();
 
@@ -151,7 +152,17 @@ namespace Petriss.Models.EntityManager
                     return string.Empty;
             }
         }
-
+        public string GetUserActivationLink(string loginName)
+        {
+            using (PetrissEntities db = new PetrissEntities())
+            {
+                var user = db.Users.Where(o => o.EmailId.ToLower().Equals(loginName));
+                if (user.Any())
+                    return user.FirstOrDefault().UserActivationLink;
+                else
+                    return string.Empty;
+            }
+        }
         public string[] GetRolesForUser(string loginName)
         {
             using (PetrissEntities db = new PetrissEntities())

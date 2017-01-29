@@ -82,3 +82,5 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petris
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.csprojResolveAssemblyReference.cache
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\log4net.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\log4net.xml
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Petriss.Utilities.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Petriss.Utilities.pdb
