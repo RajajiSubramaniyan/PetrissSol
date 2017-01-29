@@ -14,15 +14,16 @@ using System.Web.Security;
 using Petriss.Models.EntityManager;
 using System.Net.Mail;
 using System.Net;
+using System.Configuration;
 
 namespace Petriss.Controllers
 {
     
     public class AccountController : Controller
     {
-          
-      
-            public ActionResult SignUp()
+        log4net.ILog logger = log4net.LogManager.GetLogger(typeof(AccountController));  //Declaring Log4Net
+
+        public ActionResult SignUp()
             {
                 return View();
             }
@@ -30,6 +31,7 @@ namespace Petriss.Controllers
             [HttpPost]
             public ActionResult SignUp(UserSignUpView USV)
             {
+
                 if (ModelState.IsValid)
                 {
                     UserManager UM = new UserManager();
@@ -38,7 +40,45 @@ namespace Petriss.Controllers
                         UM.AddUserAccount(USV);
                         
                         FormsAuthentication.SetAuthCookie(USV.FirstName, false);
-                        return RedirectToAction("Welcome", "Home");
+                         //EMAIL SERVER SETTING
+                        string _host=ConfigurationManager.AppSettings["host"].ToString();
+                        string _port = ConfigurationManager.AppSettings["port"].ToString();
+                        string _smptclient = ConfigurationManager.AppSettings["smtpclient"].ToString();
+                        string _username = ConfigurationManager.AppSettings["username"].ToString();
+                        string _password= ConfigurationManager.AppSettings["password"].ToString();
+                        string _emailfrom = ConfigurationManager.AppSettings["emailfrom"].ToString();
+
+                    //if (_host == null || string.IsNullOrEmpty(_host.ToString()))
+                    //    throw new Exception("Fatal error: missing connecting string in web.config file");
+                    //string connString = _host.ToString();
+                    try
+                    {
+                        SmtpClient smtpClient = new SmtpClient("smtpout.secureserver.net");
+                        smtpClient.Host = _host;
+                        smtpClient.Port = Convert.ToInt32(_port);
+                        smtpClient.EnableSsl = false;//--- Donot change
+                        smtpClient.UseDefaultCredentials = true;
+                        string faithSenderUsername = _username;
+                        string faithSenderPassword = _password;
+                        string _messagebody = "Welcome " + _emailfrom + ":" + "<br/><br/>Please click here <a href='http://petrisss.com/Login.aspx' target='_new'>Here</a> to activate your account . <br/><br/><b>Best Regards</b></br><i> Petriss Systems</i>"; //Message body
+
+                        smtpClient.Credentials = new NetworkCredential(faithSenderUsername, faithSenderPassword);
+                        using (MailMessage mm = new MailMessage(faithSenderUsername, _emailfrom))
+                        {
+                            mm.Subject = "Petriss Account Activation";
+                            mm.Body = _messagebody;
+
+                            mm.IsBodyHtml = true;
+                            smtpClient.Send(mm);
+                            // loginmsg.Text = "check you email";
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        logger.Error(ex.ToString());
+                    }
+                        
+                    return RedirectToAction("Welcome", "Home");
 
                     }
                     else
@@ -101,26 +141,27 @@ namespace Petriss.Controllers
       
         private void Contact(EmailFormModel model)
         {
+
             if (ModelState.IsValid)
             {
                 var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("recipient@gmail.com"));  // replace with valid value 
+                message.To.Add(new MailAddress(model.FromEmail));  // replace with valid value 
                 message.From = new MailAddress("sender@outlook.com");  // replace with valid value
-                message.Subject = "Your email subject";
+                message.Subject = "Account Activitation";
                 message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
                 message.IsBodyHtml = true;
 
-                using (var smtp = new SmtpClient())
+                using (var smtp = new SmtpClient ("smtpout.secureserver.net"))
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "user@outlook.com",  // replace with valid value
-                        Password = "password"  // replace with valid value
+                        UserName = "Faith@shabirhakim.net",  // replace with valid value
+                        Password = "Shabir@123"  // replace with valid value
                     };
                     smtp.Credentials = credential;
-                    smtp.Host = "smtp-mail.outlook.com";
-                    smtp.Port = 587;
+                    smtp.Host = "webmail.shabirhakim.net";
+                    smtp.Port = 25;
                     smtp.EnableSsl = true;                   
                 }
             }
