@@ -61,7 +61,7 @@ namespace Petriss.Controllers
                         client.DeliveryMethod = SmtpDeliveryMethod.Network;
                         client.EnableSsl = true;
                         client.UseDefaultCredentials = false;
-                        client.Credentials = new NetworkCredential(_apikey, _port);
+                        client.Credentials = new NetworkCredential(_apikey, _secretkey);
                         client.Send(msg);
                     }
                     catch(Exception ex)
@@ -69,14 +69,6 @@ namespace Petriss.Controllers
                         logger.Error(ex.ToString());
                     }
 
-                        //   GMailer.GmailUsername = "shabirahmadhakim@gmail.com";
-                        //GMailer.GmailPassword = "Shabir14";
-                        //GMailer mailer = new GMailer();
-                        //mailer.IsHtml = true;
-                        //mailer.ToEmail = "shabir_hakim1@hotmail.com";// USV.EmailAddress;
-                        //mailer.Subject = "Verify your email id";
-                        //mailer.Body = "<b>Dear  " + mailer.ToEmail + "</b><br/>Welcome to Petriss Systems... Thanks for Registering your account.Please verify your email address by clicking the link <br/> <a href=? verifyemailcode = " + UM.GetUserActivationLink(USV.EmailAddress) + ">Here</a></br/> <BR/> <B>Best Regards<br/> Petriss Systems";
-                        //mailer.Send();
                         return RedirectToAction("ConfirmEmail", "Account", new { Email = USV.EmailAddress });
                       }
                     else
