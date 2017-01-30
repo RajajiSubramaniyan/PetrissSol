@@ -37,25 +37,46 @@ namespace Petriss.Controllers
             string _host = ConfigurationManager.AppSettings["host"].ToString();
             string _port = ConfigurationManager.AppSettings["port"].ToString();
             string _smptclient = ConfigurationManager.AppSettings["smtpclient"].ToString();
-            string _username = ConfigurationManager.AppSettings["username"].ToString();
-            string _password = ConfigurationManager.AppSettings["password"].ToString();
+            string _apikey = ConfigurationManager.AppSettings["apikey"].ToString();
+            string _secretkey = ConfigurationManager.AppSettings["secretkey"].ToString();
             string _emailfrom = ConfigurationManager.AppSettings["emailfrom"].ToString();
+            string _emailto = ConfigurationManager.AppSettings["emailto"].ToString();
 
             if (ModelState.IsValid)
                 {
                     UserManager UM = new UserManager();
                     if (!UM.IsLoginNameExist(USV.EmailAddress))
                     {
-                        UM.AddUserAccount(USV);                        
+                    try
+                    {
+                        UM.AddUserAccount(USV);
                         FormsAuthentication.SetAuthCookie(USV.FirstName, false);
-                        GMailer.GmailUsername = "shabirahmadhakim@gmail.com";
-                        GMailer.GmailPassword = "Shabir14";
-                        GMailer mailer = new GMailer();
-                        mailer.IsHtml = true;
-                        mailer.ToEmail = "shabir_hakim1@hotmail.com";// USV.EmailAddress;
-                        mailer.Subject = "Verify your email id";
-                        mailer.Body = "<b>Dear  " + mailer.ToEmail + "</b><br/>Welcome to Petriss Systems... Thanks for Registering your account.Please verify your email address by clicking the link <br/> <a href=? verifyemailcode = " + UM.GetUserActivationLink(USV.EmailAddress) + ">Here</a></br/> <BR/> <B>Best Regards<br/> Petriss Systems";
-                        mailer.Send();
+                        MailMessage msg = new MailMessage();
+                        msg.From = new MailAddress(_emailfrom);
+                        msg.To.Add(new MailAddress(_emailto));
+                        msg.Subject = "Your Account Activation";
+                        msg.Body = "<b>Dear  " + _emailto + "</b><br/>Welcome to Petriss Systems... Thanks for Registering your account.Please verify your email address by clicking the link <br/> <a href=? verifyemailcode = " + UM.GetUserActivationLink(_emailto) + ">Here</a></br/> <BR/> <B>Best Regards<br/> Petriss Systems";
+
+                        SmtpClient client = new SmtpClient(_smptclient, Convert.ToInt32(_port));
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        client.EnableSsl = true;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = new NetworkCredential(_apikey, _port);
+                        client.Send(msg);
+                    }
+                    catch(Exception ex)
+                    {
+                        logger.Error(ex.ToString());
+                    }
+
+                        //   GMailer.GmailUsername = "shabirahmadhakim@gmail.com";
+                        //GMailer.GmailPassword = "Shabir14";
+                        //GMailer mailer = new GMailer();
+                        //mailer.IsHtml = true;
+                        //mailer.ToEmail = "shabir_hakim1@hotmail.com";// USV.EmailAddress;
+                        //mailer.Subject = "Verify your email id";
+                        //mailer.Body = "<b>Dear  " + mailer.ToEmail + "</b><br/>Welcome to Petriss Systems... Thanks for Registering your account.Please verify your email address by clicking the link <br/> <a href=? verifyemailcode = " + UM.GetUserActivationLink(USV.EmailAddress) + ">Here</a></br/> <BR/> <B>Best Regards<br/> Petriss Systems";
+                        //mailer.Send();
                         return RedirectToAction("ConfirmEmail", "Account", new { Email = USV.EmailAddress });
                       }
                     else
