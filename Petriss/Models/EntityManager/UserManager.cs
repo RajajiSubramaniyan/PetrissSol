@@ -4,6 +4,7 @@ using Petriss.Models.DB;
 using System.Collections.Generic;
 using Petriss.Models.ViewModel;
 using System.Web;
+using Petriss.Utilities;
 
 namespace Petriss.Models.EntityManager
 {
@@ -19,6 +20,10 @@ namespace Petriss.Models.EntityManager
 
                 User _user = new User();
                 _user.EmailId = user.EmailAddress;
+
+                var keyNew = Helper.GeneratePassword(10);
+                var password = Helper.EncodePassword(_user.Password, keyNew);
+                _user.Password = password;
                 _user.Password = user.Password;
                 _user.UserActivationLink = baseUrl + Guid.NewGuid();
                 _user.CreatedByUserId = user.UserId > 0 ? user.UserId : 1;

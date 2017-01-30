@@ -205,7 +205,7 @@
     <Compile Include="Controllers\InstrumentControlle.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -270,10 +270,10 @@
       <DependentUpon>PETRISSMODEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntityManager\InstrumentManager.cs" />
-    <Compile Include="Models\EntityManager\OrganizationManager.cs" />
+    <Compile Include="Models\EntityManager\VendorManager.cs" />
     <Compile Include="Models\EntityManager\UserManager.cs" />
     <Compile Include="Models\ViewModel\InstrumentModel.cs" />
-    <Compile Include="Models\ViewModel\OrganizationModel.cs" />
+    <Compile Include="Models\ViewModel\VendorModel.cs" />
     <Compile Include="Models\ViewModel\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthorizeRolesAttribute.cs" />
@@ -356,18 +356,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\Vendor\Index.cshtml" />
     <Content Include="Views\Instrument\Index.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\ActivityLog\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Organization\AddNewOrganization.cshtml" />
+    <Content Include="Views\Vendor\AddNewVendor.cshtml" />
     <Content Include="Views\Home\AdminOnly.cshtml" />
     <Content Include="Views\Home\EditProfile.cshtml" />
     <Content Include="Views\Home\ManageUserPartial.cshtml" />
     <Content Include="Views\Home\UnAuthorized.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
-    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Account\LogOff.cshtml" />
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\_IconLayout.cshtml" />

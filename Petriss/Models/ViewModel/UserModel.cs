@@ -19,7 +19,8 @@ namespace Petriss.Models.ViewModel
         public string EmailAddress { get; set; }
         [Display(Name = "Password")]
         public string Password { get; set; }
-              
+        public string VCode{get;set;}
+
     }
 
     public class UserLoginView
@@ -33,8 +34,15 @@ namespace Petriss.Models.ViewModel
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+        public bool isRemember { get; set; }
+        public string CapImage { get; set; }
+        [Required(ErrorMessage = "Verification code is required.")]
+        [System.ComponentModel.DataAnnotations.Compare("CapImageText",
+            ErrorMessage = "Captcha code Invalid")]
+        public string CaptchaCodeText { get; set; }
+        public string CapImageText { get; set; }
     }
-
+     
     public class UserProfileView
     {
         [Key]

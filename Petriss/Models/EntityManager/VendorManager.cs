@@ -6,13 +6,13 @@ using Petriss.Models.ViewModel;
 
 namespace Petriss.Models.EntityManager
 {
-    public class OrganizationManager
+    public class VendorManager
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="user"></param>
-        public void AddOrganization(UserSignUpView user)
+        public void AddVendor(UserSignUpView user)
         {
 
             using (PetrissEntities db = new PetrissEntities())
@@ -61,7 +61,7 @@ namespace Petriss.Models.EntityManager
         /// 
         /// </summary>
         /// <param name="user"></param>
-        public void UpdateOrganization(UserProfileView user)
+        public void UpdateVendor(UserProfileView user)
         {
 
             using (PetrissEntities db = new PetrissEntities())
@@ -142,7 +142,7 @@ namespace Petriss.Models.EntityManager
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
-        public UserProfileView GetOrganizationById(int userID)
+        public UserProfileView GetVendorById(int userID)
         {
             UserProfileView _userprofile = new UserProfileView();
             using (PetrissEntities db = new PetrissEntities())
@@ -177,7 +177,7 @@ namespace Petriss.Models.EntityManager
         /// 
         /// </summary>
         /// <param name="userID"></param>
-        public void DeleteOrganization(int userID)
+        public void DeleteVendor(int userID)
         {
             using (PetrissEntities db = new PetrissEntities())
             {

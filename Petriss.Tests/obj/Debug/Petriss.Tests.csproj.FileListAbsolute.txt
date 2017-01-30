@@ -100,3 +100,5 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\Microsoft.Owin.Security.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\Microsoft.Owin.Security.xml
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\Petriss.Utilities.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Tests\bin\Debug\Petriss.Utilities.pdb

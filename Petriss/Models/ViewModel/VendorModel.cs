@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 namespace Petriss.Models.ViewModel
 {
-    public class OrganizationList
+    public class VendorList
     {
         [Key]
-        public int OrganizationId { get; set; }
+        public int VendorId { get; set; }
       
-        public string OrganizationName { get; set; }
+        public string VendorName { get; set; }
               
     }
 
