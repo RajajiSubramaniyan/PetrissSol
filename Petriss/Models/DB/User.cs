@@ -24,13 +24,15 @@ namespace Petriss.Models.DB
         public int UserId { get; set; }
         public string EmailId { get; set; }
         public string Password { get; set; }
-        public bool UserStatus { get; set; }
+        public Nullable<bool> ActivationStatus { get; set; }
         public string UserActivationLink { get; set; }
-        public int UserLoginAttempt { get; set; }
+        public Nullable<int> UserLoginAttempt { get; set; }
         public int CreatedByUserId { get; set; }
         public Nullable<System.DateTime> CreatedDateTime { get; set; }
         public int ModifiedByUserId { get; set; }
         public Nullable<System.DateTime> ModifiedDateTime { get; set; }
+        public Nullable<bool> UserStatus { get; set; }
+        public string PreferredName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersProfile> UsersProfiles { get; set; }

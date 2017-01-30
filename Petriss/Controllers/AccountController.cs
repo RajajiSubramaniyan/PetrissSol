@@ -36,16 +36,7 @@ namespace Petriss.Controllers
         [HttpPost]
         public ActionResult SignUp(UserSignUpView USV)
              {
-           // bool _emailconfirmed = false;
-            //EMAIL SERVER SETTING
-            string _host = ConfigurationManager.AppSettings["host"].ToString();
-            string _port = ConfigurationManager.AppSettings["port"].ToString();
-            string _smptclient = ConfigurationManager.AppSettings["smtpclient"].ToString();
-            string _apikey = ConfigurationManager.AppSettings["apikey"].ToString();
-            string _secretkey = ConfigurationManager.AppSettings["secretkey"].ToString();
-            string _emailfrom = ConfigurationManager.AppSettings["emailfrom"].ToString();
-            string _emailto = ConfigurationManager.AppSettings["emailto"].ToString();
-
+            // bool _emailconfirmed = false;
             if (ModelState.IsValid)
                 {
                     UserManager UM = new UserManager();
@@ -54,18 +45,15 @@ namespace Petriss.Controllers
                     try
                     {
                         UM.AddUserAccount(USV);
-
-                        string clientCaptcha =Request.Form["clientCaptcha"];
-                        string serverCaptcha = Session["CAPTCHA"].ToString();
-
-                        if (!clientCaptcha.Equals(serverCaptcha))
-                        {
-                            ViewBag.ShowCAPTCHA = serverCaptcha;
-
-                            ViewBag.CaptchaError = "Sorry, please write exact text as written above.";
-                            return View();
-                        }
                         FormsAuthentication.SetAuthCookie(USV.FirstName, false);
+                        //EMAIL SERVER SETTING
+                        string _host = ConfigurationManager.AppSettings["host"].ToString();
+                        string _port = ConfigurationManager.AppSettings["port"].ToString();
+                        string _smptclient = ConfigurationManager.AppSettings["smtpclient"].ToString();
+                        string _apikey = ConfigurationManager.AppSettings["apikey"].ToString();
+                        string _secretkey = ConfigurationManager.AppSettings["secretkey"].ToString();
+                        string _emailfrom = ConfigurationManager.AppSettings["emailfrom"].ToString();
+                        string _emailto = ConfigurationManager.AppSettings["emailto"].ToString();
                         MailMessage msg = new MailMessage();
                         msg.From = new MailAddress(_emailfrom);
                         msg.To.Add(new MailAddress(_emailto));
@@ -95,11 +83,11 @@ namespace Petriss.Controllers
                 return View();
             }
 
-            [Authorize]
-            public ActionResult SignOut()
+          
+            public ActionResult LogOff()
             {
-                FormsAuthentication.SignOut();
-                return RedirectToAction("Index", "Home");
+              //  FormsAuthentication.SignOut();
+                return RedirectToAction("LogOff", "Account");
             }
 
         [AllowAnonymous]
@@ -125,30 +113,32 @@ namespace Petriss.Controllers
                 if (ModelState.IsValid)
                 {
 
-                if (Request.Url.AbsoluteUri == activationlink)
-                {
+                //if (Request.Url.AbsoluteUri == activationlink)
+                //{
                   
                     string password = UM.GetUserPassword(ULV.EmailAddress);
 
-                    if (string.IsNullOrEmpty(password))
-                        ModelState.AddModelError("", "The user login or password provided is incorrect.");
-                    else
-                    {
-                        if (ULV.Password.Equals(password))
-                        {
-                            
-                             FormsAuthentication.RedirectFromLoginPage(ULV.EmailAddress, false);
-                        }
-                        else
-                        {
-                            ModelState.AddModelError("", "The password provided is incorrect.");
-                        }
-                    }
+                if (string.IsNullOrEmpty(password))
+                {
+                    ModelState.AddModelError("", "The user login or password provided is incorrect.");
                 }
                 else
                 {
-                   ModelState.AddModelError(" ","Please Check your email and activate/login via Url");
+                    if (ULV.Password.Equals(password))
+                    {
+                        TempData["data"] = ULV.EmailAddress.ToString();
+                        FormsAuthentication.RedirectFromLoginPage(ULV.EmailAddress, false);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The password provided is incorrect.");
+                    }
                 }
+              //  }
+                //else
+                //{
+                //   ModelState.AddModelError(" ","Please Check your email and activate/login via Url");
+                //}
                 }
 
                 // If we got this far, something failed, redisplay form
@@ -183,66 +173,8 @@ namespace Petriss.Controllers
             }
            
         }
-        private string GetRandomText()
-        {
-            StringBuilder randomText = new StringBuilder();
-            string alphabets = "012345679ACEFGHKLMNPRSWXZabcdefghijkhlmnopqrstuvwxyz";
-            Random r = new Random();
-            for (int j = 0; j <= 5; j++)
-            {
-                randomText.Append(alphabets[r.Next(alphabets.Length)]);
-            }
-            return randomText.ToString();
-        }
-
-        public ActionResult CustomCaptcha()
-        {
-            Session["CAPTCHA"] = GetRandomText();
-            return View();
-        }
-
-        public FileResult GetCaptchaImage()
-        {
-            string text = Session["CAPTCHA"].ToString();
-
-            //first, create a dummy bitmap just to get a graphics object
-            Image img = new Bitmap(1, 1);
-            Graphics drawing = Graphics.FromImage(img);
-
-            Font font = new Font("Arial", 15);
-            //measure the string to see how big the image needs to be
-            SizeF textSize = drawing.MeasureString(text, font);
-
-            //free up the dummy image and old graphics object
-            img.Dispose();
-            drawing.Dispose();
-
-            //create a new image of the right size
-            img = new Bitmap((int)textSize.Width + 40, (int)textSize.Height + 20);
-            drawing = Graphics.FromImage(img);
-
-            Color backColor = Color.SeaShell;
-            Color textColor = Color.Red;
-            //paint the background
-            drawing.Clear(backColor);
-
-            //create a brush for the text
-            Brush textBrush = new SolidBrush(textColor);
-
-            drawing.DrawString(text, font, textBrush, 20, 10);
-
-            drawing.Save();
-
-            font.Dispose();
-            textBrush.Dispose();
-            drawing.Dispose();
-
-            MemoryStream ms = new MemoryStream();
-            img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            img.Dispose();
-
-            return File(ms.ToArray(), "image/png");
-        }
+     
+        
 
         #region Helpers
         // Used for XSRF protection when adding external logins

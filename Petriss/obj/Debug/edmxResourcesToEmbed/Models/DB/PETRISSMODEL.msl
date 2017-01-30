@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="PetrissModelStoreContainer" CdmEntityContainer="PetrissEntities">
+  <EntityContainerMapping StorageEntityContainer="DbModelStoreContainer" CdmEntityContainer="PetrissEntities">
     <EntitySetMapping Name="BrandMasters">
-      <EntityTypeMapping TypeName="PetrissModel.BrandMaster">
+      <EntityTypeMapping TypeName="DbModel.BrandMaster">
         <MappingFragment StoreEntitySet="BrandMaster">
           <ScalarProperty Name="BrandId" ColumnName="BrandId" />
           <ScalarProperty Name="BrandName" ColumnName="BrandName" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CityMasters">
-      <EntityTypeMapping TypeName="PetrissModel.CityMaster">
+      <EntityTypeMapping TypeName="DbModel.CityMaster">
         <MappingFragment StoreEntitySet="CityMaster">
           <ScalarProperty Name="CityId" ColumnName="CityId" />
           <ScalarProperty Name="CityName" ColumnName="CityName" />
@@ -20,12 +20,12 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Instruments">
-      <EntityTypeMapping TypeName="PetrissModel.Instrument">
+      <EntityTypeMapping TypeName="DbModel.Instrument">
         <MappingFragment StoreEntitySet="Instrument">
           <ScalarProperty Name="InstrumentId" ColumnName="InstrumentId" />
           <ScalarProperty Name="InstrumentName" ColumnName="InstrumentName" />
           <ScalarProperty Name="InstrumentDesc" ColumnName="InstrumentDesc" />
-          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="VendorId" ColumnName="VendorId" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="BrandId" ColumnName="BrandId" />
           <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
@@ -43,7 +43,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ManufacturerMasters">
-      <EntityTypeMapping TypeName="PetrissModel.ManufacturerMaster">
+      <EntityTypeMapping TypeName="DbModel.ManufacturerMaster">
         <MappingFragment StoreEntitySet="ManufacturerMaster">
           <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
           <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
@@ -51,26 +51,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Organizations">
-      <EntityTypeMapping TypeName="PetrissModel.Organization">
-        <MappingFragment StoreEntitySet="Organization">
-          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
-          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-          <ScalarProperty Name="OrganizationLink" ColumnName="OrganizationLink" />
-          <ScalarProperty Name="OrganizationAddress1" ColumnName="OrganizationAddress1" />
-          <ScalarProperty Name="OrganizationAddress2" ColumnName="OrganizationAddress2" />
-          <ScalarProperty Name="OrganizationStateId" ColumnName="OrganizationStateId" />
-          <ScalarProperty Name="OrganizationCityId" ColumnName="OrganizationCityId" />
-          <ScalarProperty Name="OrganizationZip" ColumnName="OrganizationZip" />
-          <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
-          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-          <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
-          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SoakNotes">
-      <EntityTypeMapping TypeName="PetrissModel.SoakNote">
+      <EntityTypeMapping TypeName="DbModel.SoakNote">
         <MappingFragment StoreEntitySet="SoakNote">
           <ScalarProperty Name="SoakId" ColumnName="SoakId" />
           <ScalarProperty Name="TimeinSeconds" ColumnName="TimeinSeconds" />
@@ -90,7 +72,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SoakNoteMasters">
-      <EntityTypeMapping TypeName="PetrissModel.SoakNoteMaster">
+      <EntityTypeMapping TypeName="DbModel.SoakNoteMaster">
         <MappingFragment StoreEntitySet="SoakNoteMaster">
           <ScalarProperty Name="SoakNoteId" ColumnName="SoakNoteId" />
           <ScalarProperty Name="SoakNoteName" ColumnName="SoakNoteName" />
@@ -99,7 +81,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SpecialityMasters">
-      <EntityTypeMapping TypeName="PetrissModel.SpecialityMaster">
+      <EntityTypeMapping TypeName="DbModel.SpecialityMaster">
         <MappingFragment StoreEntitySet="SpecialityMaster">
           <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
           <ScalarProperty Name="SpecialityName" ColumnName="SpecialityName" />
@@ -107,17 +89,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="StateMasters">
-      <EntityTypeMapping TypeName="PetrissModel.StateMaster">
-        <MappingFragment StoreEntitySet="StateMaster">
-          <ScalarProperty Name="StateId" ColumnName="StateId" />
-          <ScalarProperty Name="StateName" ColumnName="StateName" />
-          <ScalarProperty Name="StateStatus" ColumnName="StateStatus" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="StatusMasters">
-      <EntityTypeMapping TypeName="PetrissModel.StatusMaster">
+      <EntityTypeMapping TypeName="DbModel.StatusMaster">
         <MappingFragment StoreEntitySet="StatusMaster">
           <ScalarProperty Name="StatusId" ColumnName="StatusId" />
           <ScalarProperty Name="StatusName" ColumnName="StatusName" />
@@ -125,7 +98,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserLookupRoles">
-      <EntityTypeMapping TypeName="PetrissModel.UserLookupRole">
+      <EntityTypeMapping TypeName="DbModel.UserLookupRole">
         <MappingFragment StoreEntitySet="UserLookupRoles">
           <ScalarProperty Name="UserLookupRoleId" ColumnName="UserLookupRoleId" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -138,23 +111,25 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="PetrissModel.User">
+      <EntityTypeMapping TypeName="DbModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="EmailId" ColumnName="EmailId" />
           <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+          <ScalarProperty Name="ActivationStatus" ColumnName="ActivationStatus" />
           <ScalarProperty Name="UserActivationLink" ColumnName="UserActivationLink" />
           <ScalarProperty Name="UserLoginAttempt" ColumnName="UserLoginAttempt" />
           <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
           <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
           <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
           <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersProfiles">
-      <EntityTypeMapping TypeName="PetrissModel.UsersProfile">
+      <EntityTypeMapping TypeName="DbModel.UsersProfile">
         <MappingFragment StoreEntitySet="UsersProfiles">
           <ScalarProperty Name="UserProfileId" ColumnName="UserProfileId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -175,12 +150,30 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersRoles">
-      <EntityTypeMapping TypeName="PetrissModel.UsersRole">
+      <EntityTypeMapping TypeName="DbModel.UsersRole">
         <MappingFragment StoreEntitySet="UsersRoles">
           <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="UserLookupRoleId" ColumnName="UserLookupRoleId" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vendors">
+      <EntityTypeMapping TypeName="DbModel.Vendor">
+        <MappingFragment StoreEntitySet="Vendor">
+          <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="VendorLink" ColumnName="VendorLink" />
+          <ScalarProperty Name="VendorAddress1" ColumnName="VendorAddress1" />
+          <ScalarProperty Name="VendorAddress2" ColumnName="VendorAddress2" />
+          <ScalarProperty Name="VendorStateId" ColumnName="VendorStateId" />
+          <ScalarProperty Name="VendorCityId" ColumnName="VendorCityId" />
+          <ScalarProperty Name="VendorZip" ColumnName="VendorZip" />
           <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
           <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
           <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />

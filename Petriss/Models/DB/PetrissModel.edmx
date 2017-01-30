@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PetrissModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BrandMaster">
           <Key>
             <PropertyRef Name="BrandId" />
@@ -28,7 +28,7 @@
           <Property Name="InstrumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InstrumentName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="InstrumentDesc" Type="varchar(max)" />
-          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="BrandId" Type="int" Nullable="false" />
           <Property Name="ManufacturerId" Type="int" Nullable="false" />
@@ -50,23 +50,6 @@
           <Property Name="ManufacturerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ManufacturerName" Type="nvarchar" MaxLength="50" />
           <Property Name="ManufacturerStatus" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Organization">
-          <Key>
-            <PropertyRef Name="OrganizationId" />
-          </Key>
-          <Property Name="OrganizationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="OrganizationLink" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="OrganizationAddress1" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="OrganizationAddress2" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="OrganizationStateId" Type="int" />
-          <Property Name="OrganizationCityId" Type="int" />
-          <Property Name="OrganizationZip" Type="int" />
-          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
-          <Property Name="CreatedDateTime" Type="datetime" />
-          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
-          <Property Name="ModifiedDateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="SoakNote">
           <Key>
@@ -103,14 +86,6 @@
           <Property Name="SpecialityName" Type="nvarchar" MaxLength="50" />
           <Property Name="SpecialityStatus" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="StateMaster">
-          <Key>
-            <PropertyRef Name="StateId" />
-          </Key>
-          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StateName" Type="nvarchar" MaxLength="50" />
-          <Property Name="StateStatus" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="StatusMaster">
           <Key>
             <PropertyRef Name="StatusId" />
@@ -137,13 +112,15 @@
           <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="UserStatus" Type="bit" Nullable="false" />
+          <Property Name="ActivationStatus" Type="bit" />
           <Property Name="UserActivationLink" Type="nvarchar" MaxLength="255" />
-          <Property Name="UserLoginAttempt" Type="int" Nullable="false" />
+          <Property Name="UserLoginAttempt" Type="int" />
           <Property Name="CreatedByUserId" Type="int" Nullable="false" />
           <Property Name="CreatedDateTime" Type="datetime" />
           <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
           <Property Name="ModifiedDateTime" Type="datetime" />
+          <Property Name="UserStatus" Type="bit" />
+          <Property Name="PreferredName" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="UsersProfiles">
           <Key>
@@ -173,6 +150,23 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="UserLookupRoleId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="VendorLink" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="VendorAddress1" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="VendorAddress2" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="VendorStateId" Type="int" />
+          <Property Name="VendorCityId" Type="int" />
+          <Property Name="VendorZip" Type="int" />
           <Property Name="CreatedByUserId" Type="int" Nullable="false" />
           <Property Name="CreatedDateTime" Type="datetime" />
           <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
@@ -214,21 +208,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PetrissModelStoreContainer">
+        <EntityContainer Name="DbModelStoreContainer">
           <EntitySet Name="BrandMaster" EntityType="Self.BrandMaster" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="Instrument" EntityType="Self.Instrument" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="ManufacturerMaster" EntityType="Self.ManufacturerMaster" Schema="shabidy3" store:Type="Tables" />
-          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="SoakNote" EntityType="Self.SoakNote" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="SoakNoteMaster" EntityType="Self.SoakNoteMaster" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="SpecialityMaster" EntityType="Self.SpecialityMaster" Schema="shabidy3" store:Type="Tables" />
-          <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="StatusMaster" EntityType="Self.StatusMaster" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="UserLookupRoles" EntityType="Self.UserLookupRoles" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfiles" Schema="shabidy3" store:Type="Tables" />
           <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="shabidy3" store:Type="Tables" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="shabidy3" store:Type="Tables" />
           <AssociationSet Name="FK__UserPr__Us__239E4DCF" Association="Self.FK__UserPr__Us__239E4DCF">
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersProfiles" EntitySet="UsersProfiles" />
@@ -242,11 +235,10 @@
             <End Role="UsersRoles" EntitySet="UsersRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PetrissModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BrandMaster">
           <Key>
             <PropertyRef Name="BrandId" />
@@ -270,7 +262,7 @@
           <Property Name="InstrumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InstrumentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="InstrumentDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="VendorId" Type="Int32" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="BrandId" Type="Int32" Nullable="false" />
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
@@ -292,23 +284,6 @@
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ManufacturerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ManufacturerStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Organization">
-          <Key>
-            <PropertyRef Name="OrganizationId" />
-          </Key>
-          <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrganizationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OrganizationLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OrganizationAddress1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OrganizationAddress2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OrganizationStateId" Type="Int32" />
-          <Property Name="OrganizationCityId" Type="Int32" />
-          <Property Name="OrganizationZip" Type="Int32" />
-          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="SoakNote">
           <Key>
@@ -345,14 +320,6 @@
           <Property Name="SpecialityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SpecialityStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="StateMaster">
-          <Key>
-            <PropertyRef Name="StateId" />
-          </Key>
-          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StateStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="StatusMaster">
           <Key>
             <PropertyRef Name="StatusId" />
@@ -380,15 +347,17 @@
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserStatus" Type="Boolean" Nullable="false" />
+          <Property Name="ActivationStatus" Type="Boolean" />
           <Property Name="UserActivationLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="UserLoginAttempt" Type="Int32" Nullable="false" />
+          <Property Name="UserLoginAttempt" Type="Int32" />
           <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
           <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
           <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
           <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UserStatus" Type="Boolean" />
           <NavigationProperty Name="UsersProfiles" Relationship="Self.FK__UserPr__Us__239E4DCF" FromRole="Users" ToRole="UsersProfiles" />
           <NavigationProperty Name="UsersRoles" Relationship="Self.FK__UserRo__Us__2A4B4B5E" FromRole="Users" ToRole="UsersRoles" />
+          <Property Name="PreferredName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UsersProfile">
           <Key>
@@ -425,6 +394,23 @@
           <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserLookupRole" Relationship="Self.FK__UserRo__Looku__29572725" FromRole="UsersRoles" ToRole="UserLookupRoles" />
           <NavigationProperty Name="User" Relationship="Self.FK__UserRo__Us__2A4B4B5E" FromRole="UsersRoles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VendorLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VendorAddress1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VendorAddress2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VendorStateId" Type="Int32" />
+          <Property Name="VendorCityId" Type="Int32" />
+          <Property Name="VendorZip" Type="Int32" />
+          <Property Name="CreatedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__UserRo__Looku__29572725">
           <End Role="UserLookupRoles" Type="Self.UserLookupRole" Multiplicity="1" />
@@ -467,16 +453,15 @@
           <EntitySet Name="CityMasters" EntityType="Self.CityMaster" />
           <EntitySet Name="Instruments" EntityType="Self.Instrument" />
           <EntitySet Name="ManufacturerMasters" EntityType="Self.ManufacturerMaster" />
-          <EntitySet Name="Organizations" EntityType="Self.Organization" />
           <EntitySet Name="SoakNotes" EntityType="Self.SoakNote" />
           <EntitySet Name="SoakNoteMasters" EntityType="Self.SoakNoteMaster" />
           <EntitySet Name="SpecialityMasters" EntityType="Self.SpecialityMaster" />
-          <EntitySet Name="StateMasters" EntityType="Self.StateMaster" />
           <EntitySet Name="StatusMasters" EntityType="Self.StatusMaster" />
           <EntitySet Name="UserLookupRoles" EntityType="Self.UserLookupRole" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfile" />
           <EntitySet Name="UsersRoles" EntityType="Self.UsersRole" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendor" />
           <AssociationSet Name="FK__UserRo__Looku__29572725" Association="Self.FK__UserRo__Looku__29572725">
             <End Role="UserLookupRoles" EntitySet="UserLookupRoles" />
             <End Role="UsersRoles" EntitySet="UsersRoles" />
@@ -495,9 +480,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PetrissModelStoreContainer" CdmEntityContainer="PetrissEntities">
+        <EntityContainerMapping StorageEntityContainer="DbModelStoreContainer" CdmEntityContainer="PetrissEntities">
           <EntitySetMapping Name="BrandMasters">
-            <EntityTypeMapping TypeName="PetrissModel.BrandMaster">
+            <EntityTypeMapping TypeName="DbModel.BrandMaster">
               <MappingFragment StoreEntitySet="BrandMaster">
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="BrandName" ColumnName="BrandName" />
@@ -506,7 +491,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CityMasters">
-            <EntityTypeMapping TypeName="PetrissModel.CityMaster">
+            <EntityTypeMapping TypeName="DbModel.CityMaster">
               <MappingFragment StoreEntitySet="CityMaster">
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
@@ -515,12 +500,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Instruments">
-            <EntityTypeMapping TypeName="PetrissModel.Instrument">
+            <EntityTypeMapping TypeName="DbModel.Instrument">
               <MappingFragment StoreEntitySet="Instrument">
                 <ScalarProperty Name="InstrumentId" ColumnName="InstrumentId" />
                 <ScalarProperty Name="InstrumentName" ColumnName="InstrumentName" />
                 <ScalarProperty Name="InstrumentDesc" ColumnName="InstrumentDesc" />
-                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
@@ -538,7 +523,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ManufacturerMasters">
-            <EntityTypeMapping TypeName="PetrissModel.ManufacturerMaster">
+            <EntityTypeMapping TypeName="DbModel.ManufacturerMaster">
               <MappingFragment StoreEntitySet="ManufacturerMaster">
                 <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
                 <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
@@ -546,26 +531,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Organizations">
-            <EntityTypeMapping TypeName="PetrissModel.Organization">
-              <MappingFragment StoreEntitySet="Organization">
-                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="OrganizationLink" ColumnName="OrganizationLink" />
-                <ScalarProperty Name="OrganizationAddress1" ColumnName="OrganizationAddress1" />
-                <ScalarProperty Name="OrganizationAddress2" ColumnName="OrganizationAddress2" />
-                <ScalarProperty Name="OrganizationStateId" ColumnName="OrganizationStateId" />
-                <ScalarProperty Name="OrganizationCityId" ColumnName="OrganizationCityId" />
-                <ScalarProperty Name="OrganizationZip" ColumnName="OrganizationZip" />
-                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
-                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
-                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SoakNotes">
-            <EntityTypeMapping TypeName="PetrissModel.SoakNote">
+            <EntityTypeMapping TypeName="DbModel.SoakNote">
               <MappingFragment StoreEntitySet="SoakNote">
                 <ScalarProperty Name="SoakId" ColumnName="SoakId" />
                 <ScalarProperty Name="TimeinSeconds" ColumnName="TimeinSeconds" />
@@ -585,7 +552,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SoakNoteMasters">
-            <EntityTypeMapping TypeName="PetrissModel.SoakNoteMaster">
+            <EntityTypeMapping TypeName="DbModel.SoakNoteMaster">
               <MappingFragment StoreEntitySet="SoakNoteMaster">
                 <ScalarProperty Name="SoakNoteId" ColumnName="SoakNoteId" />
                 <ScalarProperty Name="SoakNoteName" ColumnName="SoakNoteName" />
@@ -594,7 +561,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpecialityMasters">
-            <EntityTypeMapping TypeName="PetrissModel.SpecialityMaster">
+            <EntityTypeMapping TypeName="DbModel.SpecialityMaster">
               <MappingFragment StoreEntitySet="SpecialityMaster">
                 <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
                 <ScalarProperty Name="SpecialityName" ColumnName="SpecialityName" />
@@ -602,17 +569,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="StateMasters">
-            <EntityTypeMapping TypeName="PetrissModel.StateMaster">
-              <MappingFragment StoreEntitySet="StateMaster">
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
-                <ScalarProperty Name="StateStatus" ColumnName="StateStatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="StatusMasters">
-            <EntityTypeMapping TypeName="PetrissModel.StatusMaster">
+            <EntityTypeMapping TypeName="DbModel.StatusMaster">
               <MappingFragment StoreEntitySet="StatusMaster">
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
@@ -620,7 +578,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserLookupRoles">
-            <EntityTypeMapping TypeName="PetrissModel.UserLookupRole">
+            <EntityTypeMapping TypeName="DbModel.UserLookupRole">
               <MappingFragment StoreEntitySet="UserLookupRoles">
                 <ScalarProperty Name="UserLookupRoleId" ColumnName="UserLookupRoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -633,23 +591,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="PetrissModel.User">
+            <EntityTypeMapping TypeName="DbModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="ActivationStatus" ColumnName="ActivationStatus" />
                 <ScalarProperty Name="UserActivationLink" ColumnName="UserActivationLink" />
                 <ScalarProperty Name="UserLoginAttempt" ColumnName="UserLoginAttempt" />
                 <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
                 <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
                 <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
                 <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsersProfiles">
-            <EntityTypeMapping TypeName="PetrissModel.UsersProfile">
+            <EntityTypeMapping TypeName="DbModel.UsersProfile">
               <MappingFragment StoreEntitySet="UsersProfiles">
                 <ScalarProperty Name="UserProfileId" ColumnName="UserProfileId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -670,12 +630,30 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsersRoles">
-            <EntityTypeMapping TypeName="PetrissModel.UsersRole">
+            <EntityTypeMapping TypeName="DbModel.UsersRole">
               <MappingFragment StoreEntitySet="UsersRoles">
                 <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserLookupRoleId" ColumnName="UserLookupRoleId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="DbModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="VendorLink" ColumnName="VendorLink" />
+                <ScalarProperty Name="VendorAddress1" ColumnName="VendorAddress1" />
+                <ScalarProperty Name="VendorAddress2" ColumnName="VendorAddress2" />
+                <ScalarProperty Name="VendorStateId" ColumnName="VendorStateId" />
+                <ScalarProperty Name="VendorCityId" ColumnName="VendorCityId" />
+                <ScalarProperty Name="VendorZip" ColumnName="VendorZip" />
                 <ScalarProperty Name="CreatedByUserId" ColumnName="CreatedByUserId" />
                 <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
                 <ScalarProperty Name="ModifiedByUserId" ColumnName="ModifiedByUserId" />

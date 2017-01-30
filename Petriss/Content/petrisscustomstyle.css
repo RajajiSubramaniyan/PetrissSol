@@ -5,8 +5,8 @@
     overflow-y: auto;
     width:100%!important;
     overflow-x:hidden!important;
-    min-height:500px!important;
-    height:500px!important;
+    min-height:540px!important;
+    height:540px!important;
    
    
 }
@@ -141,6 +141,14 @@
     position:fixed;
     color:#fff!important;
 }
+.belowtopnav{
+     height: 25px!important;
+    background-color: #fff!important;
+     width: 100%!important;
+    margin-left:1.5%!important;
+   
+   
+}
 .topnav a{
     color:#fff!important;
     text-decoration:none;
@@ -158,7 +166,7 @@
    }  
         .pagebody
         {
-           margin-top:60px!important;min-height:520px;
+           margin-top:60px!important;min-height:570px!important;height:570px!important;margin-left:3%!important;margin-right:1%!important;
         }
      .nav-side-menu .brand {
      background-color:transparent!important;
@@ -167,15 +175,10 @@
      .nav-side-menu .brand {
         margin-left:-8px!important;
      }
-        .body-content{
-            margin-top:55px!important; height:auto;min-height:500px;
-            padding-top:10px;
-            margin-left:2%!important;margin-right:1%!important;
-            background-color: #FaFaFa;
-        }
+        
            footer{
             background-color: #2e353d!important;
-            min-height:42px!important;
+            min-height:32px!important;
             border-top:1px solid #ccc!important;
             padding:0!important;
         }

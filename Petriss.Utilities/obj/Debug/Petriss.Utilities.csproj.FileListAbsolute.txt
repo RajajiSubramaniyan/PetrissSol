@@ -7,4 +7,3 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\bin\De
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\bin\Debug\Petriss.Utilities.pdb
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\obj\Debug\Petriss.Utilities.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\obj\Debug\Petriss.Utilities.pdb
-C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss.Utilities\obj\Debug\Petriss.Utilities.csprojResolveAssemblyReference.cache

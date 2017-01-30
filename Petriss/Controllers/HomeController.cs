@@ -65,7 +65,7 @@ namespace Petriss.Controllers
             UserProfileView UPV = new UserProfileView();
             UPV.UserId = userID;
             UPV.EmailAddress = emailid;
-            UPV.Password = password;
+           
             UPV.FirstName = firstName;
             UPV.LastName = lastName;
             

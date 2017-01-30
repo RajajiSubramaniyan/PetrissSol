@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PetrissModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="BrandMaster">
     <Key>
       <PropertyRef Name="BrandId" />
@@ -23,7 +23,7 @@
     <Property Name="InstrumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="InstrumentName" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="InstrumentDesc" Type="varchar(max)" />
-    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="VendorId" Type="int" Nullable="false" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
     <Property Name="BrandId" Type="int" Nullable="false" />
     <Property Name="ManufacturerId" Type="int" Nullable="false" />
@@ -45,23 +45,6 @@
     <Property Name="ManufacturerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ManufacturerName" Type="nvarchar" MaxLength="50" />
     <Property Name="ManufacturerStatus" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Organization">
-    <Key>
-      <PropertyRef Name="OrganizationId" />
-    </Key>
-    <Property Name="OrganizationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="OrganizationLink" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="OrganizationAddress1" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="OrganizationAddress2" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="OrganizationStateId" Type="int" />
-    <Property Name="OrganizationCityId" Type="int" />
-    <Property Name="OrganizationZip" Type="int" />
-    <Property Name="CreatedByUserId" Type="int" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="datetime" />
-    <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
-    <Property Name="ModifiedDateTime" Type="datetime" />
   </EntityType>
   <EntityType Name="SoakNote">
     <Key>
@@ -98,14 +81,6 @@
     <Property Name="SpecialityName" Type="nvarchar" MaxLength="50" />
     <Property Name="SpecialityStatus" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="StateMaster">
-    <Key>
-      <PropertyRef Name="StateId" />
-    </Key>
-    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StateName" Type="nvarchar" MaxLength="50" />
-    <Property Name="StateStatus" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="StatusMaster">
     <Key>
       <PropertyRef Name="StatusId" />
@@ -132,13 +107,15 @@
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="UserStatus" Type="bit" Nullable="false" />
+    <Property Name="ActivationStatus" Type="bit" />
     <Property Name="UserActivationLink" Type="nvarchar" MaxLength="255" />
-    <Property Name="UserLoginAttempt" Type="int" Nullable="false" />
+    <Property Name="UserLoginAttempt" Type="int" />
     <Property Name="CreatedByUserId" Type="int" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" />
     <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
     <Property Name="ModifiedDateTime" Type="datetime" />
+    <Property Name="UserStatus" Type="bit" />
+    <Property Name="PreferredName" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="UsersProfiles">
     <Key>
@@ -168,6 +145,23 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="UserLookupRoleId" Type="int" Nullable="false" />
     <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedByUserId" Type="int" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorId" />
+    </Key>
+    <Property Name="VendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VendorName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="VendorLink" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="VendorAddress1" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="VendorAddress2" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="VendorStateId" Type="int" />
+    <Property Name="VendorCityId" Type="int" />
+    <Property Name="VendorZip" Type="int" />
     <Property Name="CreatedByUserId" Type="int" Nullable="false" />
     <Property Name="CreatedDateTime" Type="datetime" />
     <Property Name="ModifiedByUserId" Type="int" Nullable="false" />
@@ -209,21 +203,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PetrissModelStoreContainer">
+  <EntityContainer Name="DbModelStoreContainer">
     <EntitySet Name="BrandMaster" EntityType="Self.BrandMaster" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="Instrument" EntityType="Self.Instrument" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="ManufacturerMaster" EntityType="Self.ManufacturerMaster" Schema="shabidy3" store:Type="Tables" />
-    <EntitySet Name="Organization" EntityType="Self.Organization" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="SoakNote" EntityType="Self.SoakNote" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="SoakNoteMaster" EntityType="Self.SoakNoteMaster" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="SpecialityMaster" EntityType="Self.SpecialityMaster" Schema="shabidy3" store:Type="Tables" />
-    <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="StatusMaster" EntityType="Self.StatusMaster" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="UserLookupRoles" EntityType="Self.UserLookupRoles" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="UsersProfiles" EntityType="Self.UsersProfiles" Schema="shabidy3" store:Type="Tables" />
     <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="shabidy3" store:Type="Tables" />
+    <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="shabidy3" store:Type="Tables" />
     <AssociationSet Name="FK__UserPr__Us__239E4DCF" Association="Self.FK__UserPr__Us__239E4DCF">
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersProfiles" EntitySet="UsersProfiles" />

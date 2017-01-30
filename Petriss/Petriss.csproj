@@ -213,61 +213,58 @@
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Models\DB\BrandMaster.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\CityMaster.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\Instrument.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\ManufacturerMaster.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\Organization.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DB\PETRISSMODEL.Context.cs">
+    <Compile Include="Models\DB\PetrissModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PETRISSMODEL.Context.tt</DependentUpon>
+      <DependentUpon>PetrissModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\PETRISSMODEL.cs">
+    <Compile Include="Models\DB\PetrissModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\PETRISSMODEL.Designer.cs">
+    <Compile Include="Models\DB\PetrissModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PETRISSMODEL.edmx</DependentUpon>
+      <DependentUpon>PetrissModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\SoakNote.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\SoakNoteMaster.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\SpecialityMaster.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DB\StateMaster.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\StatusMaster.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\User.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\UserLookupRole.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\UsersProfile.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DB\UsersRole.cs">
-      <DependentUpon>PETRISSMODEL.tt</DependentUpon>
+      <DependentUpon>PetrissModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\Vendor.cs">
+      <DependentUpon>PetrissModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntityManager\InstrumentManager.cs" />
     <Compile Include="Models\EntityManager\VendorManager.cs" />
@@ -297,27 +294,27 @@
     <Content Include="Images\logo2.png" />
     <Content Include="Images\PetrissLogo.png" />
     <Content Include="Images\signout.png" />
-    <Content Include="Models\DB\PETRISSMODEL.Context.tt">
+    <Content Include="Models\DB\PetrissModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PETRISSMODEL.edmx</DependentUpon>
-      <LastGenOutput>PETRISSMODEL.Context.cs</LastGenOutput>
+      <DependentUpon>PetrissModel.edmx</DependentUpon>
+      <LastGenOutput>PetrissModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DB\PETRISSMODEL.tt">
+    <Content Include="Models\DB\PetrissModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PETRISSMODEL.edmx</DependentUpon>
-      <LastGenOutput>PETRISSMODEL.cs</LastGenOutput>
+      <DependentUpon>PetrissModel.edmx</DependentUpon>
+      <LastGenOutput>PetrissModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\DB\PETRISSMODEL.edmx">
+    <EntityDeploy Include="Models\DB\PetrissModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PETRISSMODEL.Designer.cs</LastGenOutput>
+      <LastGenOutput>PetrissModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DB\PETRISSMODEL.edmx.diagram">
-      <DependentUpon>PETRISSMODEL.edmx</DependentUpon>
+    <Content Include="Models\DB\PetrissModel.edmx.diagram">
+      <DependentUpon>PetrissModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
@@ -367,7 +364,7 @@
     <Content Include="Views\Home\ManageUserPartial.cshtml" />
     <Content Include="Views\Home\UnAuthorized.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
-    <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\LogOff.cshtml" />
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\_IconLayout.cshtml" />

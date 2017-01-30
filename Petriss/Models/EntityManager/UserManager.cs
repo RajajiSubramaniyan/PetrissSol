@@ -20,10 +20,7 @@ namespace Petriss.Models.EntityManager
 
                 User _user = new User();
                 _user.EmailId = user.EmailAddress;
-
-                var keyNew = Helper.GeneratePassword(10);
-                var password = Helper.EncodePassword(_user.Password, keyNew);
-                _user.Password = password;
+                _user.PreferredName = user.PrefferedName; 
                 _user.Password = user.Password;
                 _user.UserActivationLink = baseUrl + Guid.NewGuid();
                 _user.CreatedByUserId = user.UserId > 0 ? user.UserId : 1;
@@ -75,7 +72,7 @@ namespace Petriss.Models.EntityManager
 
                         User _user = db.Users.Find(user.UserId);
                         _user.EmailId = user.EmailAddress;
-                        _user.Password = user.Password;
+                        
                         _user.CreatedByUserId = user.UserId;
                         _user.ModifiedByUserId = user.UserId;
                         _user.CreatedDateTime = DateTime.Now;
@@ -248,7 +245,7 @@ namespace Petriss.Models.EntityManager
                     UPV = new UserProfileView();
                     UPV.UserId = u.UserId;
                     UPV.EmailAddress = u.EmailId;
-                    UPV.Password = u.Password;
+                    
 
                     var _userprofile = db.UsersProfiles.Find(u.UserId);
                     if (_userprofile != null)
@@ -290,13 +287,13 @@ namespace Petriss.Models.EntityManager
                 userGender = db.UsersProfiles.Where(o => o.UserId == userID)?.FirstOrDefault().Gender;
             }
 
-            List<Gender> genders = new List<Gender>();
-            genders.Add(new Gender { Text = "Male", Value = "M" });
-            genders.Add(new Gender { Text = "Female", Value = "F" });
+            //List<Gender> genders = new List<Gender>();
+            //genders.Add(new Gender { Text = "Male", Value = "M" });
+            //genders.Add(new Gender { Text = "Female", Value = "F" });
 
             UDV.UserProfile = profiles;
             UDV.UserRoles = new UserRoles { SelectedRoleId = userAssignedRoleID, UserRoleList = roles };
-            UDV.UserGender = new UserGender { SelectedGender = userGender, Gender = genders };
+            //UDV.UserGender = new UserGender { SelectedGender = userGender, Gender = genders };
             return UDV;
         }
 
@@ -310,7 +307,7 @@ namespace Petriss.Models.EntityManager
                 {
                     UPV.UserId = user.UserId;
                     UPV.EmailAddress = user.EmailId;
-                    UPV.Password = user.Password;
+                   
 
                     var _userprofile = db.UsersProfiles.Find(userID);
                     if (_userprofile != null)

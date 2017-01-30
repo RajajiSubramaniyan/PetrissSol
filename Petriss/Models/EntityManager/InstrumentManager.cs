@@ -75,8 +75,7 @@ namespace Petriss.Models.EntityManager
                     {
 
                         User _user = db.Users.Find(user.UserId);
-                        _user.EmailId = user.EmailAddress;
-                        _user.Password = user.Password;
+                        _user.EmailId = user.EmailAddress;                        
                         _user.CreatedByUserId = user.UserId;
                         _user.ModifiedByUserId = user.UserId;
                         _user.CreatedDateTime = DateTime.Now;
@@ -151,7 +150,7 @@ namespace Petriss.Models.EntityManager
                 {
                     _userprofile.UserId = user.UserId;
                     _userprofile.EmailAddress = user.EmailId;
-                    _userprofile.Password = user.Password;
+                    
 
                     var SUP = db.UsersProfiles.Find(userID);
                     if (SUP != null)

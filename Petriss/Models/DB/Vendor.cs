@@ -12,16 +12,16 @@ namespace Petriss.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Organization
+    public partial class Vendor
     {
-        public int OrganizationId { get; set; }
-        public string OrganizationName { get; set; }
-        public string OrganizationLink { get; set; }
-        public string OrganizationAddress1 { get; set; }
-        public string OrganizationAddress2 { get; set; }
-        public Nullable<int> OrganizationStateId { get; set; }
-        public Nullable<int> OrganizationCityId { get; set; }
-        public Nullable<int> OrganizationZip { get; set; }
+        public int VendorId { get; set; }
+        public string VendorName { get; set; }
+        public string VendorLink { get; set; }
+        public string VendorAddress1 { get; set; }
+        public string VendorAddress2 { get; set; }
+        public Nullable<int> VendorStateId { get; set; }
+        public Nullable<int> VendorCityId { get; set; }
+        public Nullable<int> VendorZip { get; set; }
         public int CreatedByUserId { get; set; }
         public Nullable<System.DateTime> CreatedDateTime { get; set; }
         public int ModifiedByUserId { get; set; }

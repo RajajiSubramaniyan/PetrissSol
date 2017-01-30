@@ -3,22 +3,29 @@
 }
 
 <div class="pagebody">
-   <div class="row">
-       <div class="col-md-9">
-           <h2 style="text-shadow: 1px 1px #fff;font-size:1.3em;text-transform:uppercase;word-spacing:2px;color:#000000!important;">
+    <div class="belowtopnav">
+   
+        <div class="col-md-12 ">
+            <div class="col-md-8 ">
+            Welcome &nbsp; @TempData["data"]&nbsp;to Petriss
+                </div>
+            <<div class="col-md-2">
+                 @Html.ActionLink("Edit Profile", "EditProfile", "Home")
+            </div>
+                <<div class="col-md-1">
+                    @Html.ActionLink("LogOff", "LogOff", "Account")
+                </div>
 
-               <h2>Welcome <b>@Context.User.Identity.Name</b></h2>
-
-
-           </h2>
-       </div>
-       </div>
-<div class="row">
+              
+            </div>
+        </div>
+      <div class="clearfix"></div>
+    <div class="row">
     <div class="col-md-1">
         <img src="~/Images/logo2.png" />
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-8">
         <p style="text-shadow: 1px 1px #fff;font-size:1.2em;color:#372f2f;letter-spacing:1px;">Petriss - leading our industry by providing our system to fully manage and document the process of surgical instrument decontimenation and setrialization</p>
 
 

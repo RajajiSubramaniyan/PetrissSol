@@ -17,7 +17,7 @@ namespace Petriss.Models.DB
         public int InstrumentId { get; set; }
         public string InstrumentName { get; set; }
         public string InstrumentDesc { get; set; }
-        public int OrganizationId { get; set; }
+        public int VendorId { get; set; }
         public int CategoryId { get; set; }
         public int BrandId { get; set; }
         public int ManufacturerId { get; set; }

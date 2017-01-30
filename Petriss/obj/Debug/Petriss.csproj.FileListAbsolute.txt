@@ -17,6 +17,7 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Petriss.pdb
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Antlr3.Runtime.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\EntityFramework.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\EntityFramework.SqlServer.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\log4net.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -40,6 +41,7 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Ow
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Newtonsoft.Json.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Owin.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Petriss.Utilities.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\System.Web.Helpers.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\System.Web.Mvc.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\System.Web.Optimization.dll
@@ -48,6 +50,8 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\System.Web.W
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\System.Web.WebPages.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\System.Web.WebPages.Razor.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\WebGrease.dll
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Petriss.Utilities.pdb
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\log4net.xml
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.AI.Web.xml
@@ -77,10 +81,6 @@ C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Ow
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.csprojResolveAssemblyReference.cache
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.dll
 C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.pdb
-C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\obj\Debug\Petriss.csprojResolveAssemblyReference.cache
-C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\log4net.dll
-C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\log4net.xml
-C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Petriss.Utilities.dll
-C:\Users\shakim\Desktop\FirstPetrissSolution\PetrissSol\Petriss\bin\Petriss.Utilities.pdb

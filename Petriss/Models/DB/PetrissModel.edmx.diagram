@@ -4,24 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="12cb83fcd9234328960ca4842ce3d8e9" Name="Diagram1">
-        <EntityTypeShape EntityType="PetrissModel.BrandMaster" Width="1.5" PointX="5.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.CityMaster" Width="1.5" PointX="7.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.Instrument" Width="1.5" PointX="5.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.ManufacturerMaster" Width="1.5" PointX="7.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.Organization" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.SoakNote" Width="1.5" PointX="2.75" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.SoakNoteMaster" Width="1.5" PointX="8.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.SpecialityMaster" Width="1.5" PointX="9.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.StateMaster" Width="1.5" PointX="9.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.StatusMaster" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.UserLookupRole" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.User" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.UsersProfile" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PetrissModel.UsersRole" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
-        <AssociationConnector Association="PetrissModel.FK__UserRo__Looku__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="PetrissModel.FK__UserPr__Us__239E4DCF" ManuallyRouted="false" />
-        <AssociationConnector Association="PetrissModel.FK__UserRo__Us__2A4B4B5E" ManuallyRouted="false" />
+      <Diagram DiagramId="2e93f20ec29c4904bc953219aaa91f24" Name="Diagram1">
+        <EntityTypeShape EntityType="DbModel.BrandMaster" Width="1.5" PointX="5.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.CityMaster" Width="1.5" PointX="7.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Instrument" Width="1.5" PointX="5.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.ManufacturerMaster" Width="1.5" PointX="7.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.SoakNote" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.SoakNoteMaster" Width="1.5" PointX="2.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.SpecialityMaster" Width="1.5" PointX="8.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.StatusMaster" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.UserLookupRole" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.User" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.UsersProfile" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.UsersRole" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbModel.Vendor" Width="1.5" PointX="9.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="DbModel.FK__UserRo__Looku__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="DbModel.FK__UserPr__Us__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="DbModel.FK__UserRo__Us__2A4B4B5E" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
