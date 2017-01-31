@@ -100,7 +100,10 @@ namespace Petriss.Controllers
             {
                 return View();
             }
-
+        public ActionResult TermsandServices()
+        {
+            return View();
+        }
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult LogIn(UserLoginView ULV, string returnUrl)
