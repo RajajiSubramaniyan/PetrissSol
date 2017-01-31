@@ -127,7 +127,8 @@ namespace Petriss.Controllers
                     if (ULV.Password.Equals(password))
                     {
                         TempData["data"] = ULV.EmailAddress.ToString();
-                        FormsAuthentication.RedirectFromLoginPage(ULV.EmailAddress, false);
+                        return RedirectToAction("TermsandServices", "Home");
+                       // FormsAuthentication.RedirectFromLoginPage(ULV.EmailAddress, false);
                     }
                     else
                     {

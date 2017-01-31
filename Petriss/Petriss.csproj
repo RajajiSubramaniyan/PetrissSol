@@ -369,6 +369,7 @@
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Shared\_IconLayout.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Home\TermsandServices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Petriss.Utilities\Petriss.Utilities.csproj">
